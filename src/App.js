@@ -1,24 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Router, Switch, Route } from 'react-router-dom';
+import history from './services/history';
+import 'bootswatch/dist/minty/bootstrap.min.css';
+import CadastroUsuario from './views/registerUser';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router history={history}>
+        <Switch>
+          <Route exact path="/cadastrousuarios" component={ CadastroUsuario } />
+          <Route exact path="/" render={() => history.push('/cadastrousuarios')} />
+        </Switch>
+      </Router>
     </div>
   );
 }
