@@ -8,10 +8,10 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Router history={history}>
+      <Router history={ history }>
         <Switch>
           <Route exact path="/cadastrousuarios" component={ CadastroUsuario } />
-          <Route exact path="/" render={() => history.push('/cadastrousuarios')} />
+          <Route exact path="/" render={ () => history.push('/cadastrousuarios') } />
         </Switch>
       </Router>
     </div>
