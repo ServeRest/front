@@ -4,7 +4,6 @@ import history from './services/history';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import CadastroUsuario from './views/registerUser';
 import Login from './views/login';
-import './App.css';
 
 function App() {
   return (

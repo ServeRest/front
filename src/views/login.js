@@ -4,6 +4,7 @@ import history from '../services/history';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import SuccessAlert from '../component/alert'
 import ErrorAlert from '../component/errorAlert'
+import '../styles/App.css';
 
 const redirectPage = (route) => history.push(route);
 const estadoInicial = { email: '', password: '' }
