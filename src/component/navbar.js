@@ -14,10 +14,10 @@ export default function Navbar(){
           <ButtonLink dataTestId="home" text="Home" route="/admin/home"></ButtonLink>
           </li>
           <li class="nav-item">
-          <ButtonLink dataTestId="cadastrar-usuarios" text="Cadastrar Usuários" route="/admin/cadastrar-usuarios"></ButtonLink>
+          <ButtonLink dataTestId="cadastrar-usuarios" text="Cadastrar Usuários" route="/admin/cadastrarusuarios"></ButtonLink>
           </li>
           <li class="nav-item">
-          <ButtonLink dataTestId="cadastrar-produtos" text="Cadastrar Produtos" route="/admin/cadastrar-produtos"></ButtonLink>
+          <ButtonLink dataTestId="cadastrar-produtos" text="Cadastrar Produtos" route="/admin/cadastrarprodutos"></ButtonLink>
           </li>
           <li class="nav-item">
           <ButtonLink dataTestId="relatorios" text="Relátorios" route="/admin/relatorios"></ButtonLink>

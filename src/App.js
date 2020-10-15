@@ -13,7 +13,12 @@ function App() {
       <Router history={ history }>
         <Switch>
           <Route exact path="/admin/home" component={ Home } />
-          <Route exact path="/cadastrousuarios" component={ CadastroUsuario } />
+          <Route exact path="/admin/cadastrarusuarios" component={ CadastroUsuario } />
+          <Route exact path="/admin/cadastrarprodutos" component={ CadastroUsuario } />
+          <Route exact path="/admin/listarusuarios" component={ CadastroUsuario } />
+          <Route exact path="/admin/relatorios" component={ CadastroUsuario } />
+          
+          <Route exact path="/cadastrarusuarios" component={ CadastroUsuario } />
           <Route exact path="/login" component={ Login } />
           <Route exact path="/" render={ () => history.push('/login') } />
         </Switch>
