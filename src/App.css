@@ -13,6 +13,13 @@
   }
 }
 
+.background-navbar {
+  background: -webkit-linear-gradient(right, #76b852, #6f72c2);
+  background: -moz-linear-gradient(right, #76b852, #6f72c2);
+  background: -o-linear-gradient(right, #76b852, #6f72c2);
+  background: linear-gradient(to left, #76b852, #6f72c2);
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
