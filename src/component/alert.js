@@ -21,7 +21,7 @@ export default class SuccessAlert extends Component {
         { this.state.display && 
           <div className="alert alert-dismissible alert-primary">
               <button type="button" className="close" data-dismiss="alert" onClick={() => this.handleClick()}>&times;</button>
-          <a href="/#" className="alert-link">{ this.props.nome }</a>
+          <a href="/#" className="alert-link">{ this.props.name }</a>
           </div>
         }
       </div>
