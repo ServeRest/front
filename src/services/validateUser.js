@@ -3,7 +3,7 @@ import history from '../services/history';
 
 export function validateLogin(emaill){
   axios
-    .get('http://localhost:3000/usuarios')
+    .get('https://api.serverest.dev/usuarios')
     .then( response => {
       const usuarios = response.data.usuarios
       usuarios.forEach(element => {

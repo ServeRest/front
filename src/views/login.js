@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import history from '../services/history';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import SuccessAlert from '../component/alert';
 import ErrorAlert from '../component/errorAlert';
@@ -29,7 +28,7 @@ class Login extends React.Component {
   submitHandler = e => {
     e.preventDefault();
     axios
-      .post('http://localhost:3000/login', {
+      .post('https://api.serverest.dev/login', {
         email: this.state.email,
         password: this.state.password,
        })
