@@ -37,6 +37,7 @@ class Login extends React.Component {
         this.setState({alert_message: "success"});
         this.setState({success: response.data.message });
         localStorage.setItem('@nome-do-app/userEmail', this.state.email);
+        localStorage.setItem('@nome-do-app/userToken', response.data.authorization);
         const emailStorage = localStorage.getItem('@nome-do-app/userEmail');
         validateLogin(emailStorage);
       })
