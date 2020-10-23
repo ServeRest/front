@@ -1,25 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-import history from '../services/history';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import SuccessAlert from '../component/alert'
 import ErrorAlert from '../component/errorAlert'
+import LinkButton from '../component/linkButton';
 
-const redirectPage = (route) => history.push(route);
 const estadoInicial = { nome: '', email: '', password: '', administrador: 'false'}
-const linkButton = (text, dataTestId, route) => {
-    return (
-      <a data-testid={dataTestId} type='button' href="/#" className="btn btn-link" onClick={() => redirectPage(route)}>
-        {text}
-      </a>
-    )
-};
 
 class RegisterUser extends React.Component {
-
   constructor(props) {
-    super(props)
-  
+    super(props);
+
     this.state = {
       nome: '',
       email: '',
@@ -27,12 +18,12 @@ class RegisterUser extends React.Component {
       administrador: 'false',
       alert_message: '',
       errors: '',
-      msg_error: []
+      msg_error: [],
     }
   }
 
   changeHandler = e => {
-    this.setState({ [e.target.name]: e.target.value })
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   submitHandler = e => {
@@ -43,59 +34,59 @@ class RegisterUser extends React.Component {
         email:this.state.email,
         password: this.state.password,
         administrador: this.state.administrador,
-       } )
-      .then( response => { 
-        this.setState({alert_message: "success"}) 
+       })
+      .then( response => {
+        this.setState({alert_message: "success"});
         this.setState({success: response.data.message })
       })
       .catch(error => {
-        this.setState({errors: error.response.data })
+        this.setState({errors: error.response.data });
 
         switch (this.state.errors !==null) {
           case (this.state.errors.nome != null) && (this.state.errors.email == null) && (this.state.errors.password == null):
             this.setState({alert_message: "error"});
             const errorName = Object.values(this.state.errors);
-            this.setState({msg_error: errorName})
+            this.setState({msg_error: errorName});
             break;
           case (this.state.errors.nome == null) && (this.state.errors.email !== null) && (this.state.errors.password == null):
-            if (this.state.errors.message === 'Este email já está sendo usado'){
+            if (this.state.errors.message === 'Este email já está sendo usado') {
               this.setState({alert_message: "error"});
               const errorEmailUsed = Object.values(this.state.errors);
-              this.setState({msg_error: errorEmailUsed})
+              this.setState({msg_error: errorEmailUsed});
             } else {
               this.setState({alert_message: "error"});
               const errorEmail = Object.values(this.state.errors);
-              this.setState({msg_error: errorEmail})
+              this.setState({msg_error: errorEmail});
             }
             break;
-          case (this.state.errors.nome == null) && (this.state.errors.email == null) && (this.state.errors.password !== null) :
+          case (this.state.errors.nome == null) && (this.state.errors.email == null) && (this.state.errors.password !== null):
             this.setState({alert_message: "error"});
             const errorPassword = Object.values(this.state.errors);
-            this.setState({msg_error: errorPassword})
+            this.setState({msg_error: errorPassword});
             break;
           case (this.state.errors.nome !== null) && (this.state.errors.email !== null) && (this.state.errors.password == null):
             this.setState({alert_message: "error"});
             const errorNameEmail = Object.values(this.state.errors);
-            this.setState({msg_error: errorNameEmail})
-            break; 
+            this.setState({msg_error: errorNameEmail});
+            break;
           case (this.state.errors.nome !== null) && (this.state.errors.email == null) && (this.state.errors.password !== null):
             this.setState({alert_message: "error"});
             const errorNamePassword = Object.values(this.state.errors);
-            this.setState({msg_error: errorNamePassword})
+            this.setState({msg_error: errorNamePassword});
             break;
             case (this.state.errors.nome == null) && (this.state.errors.email !== null) && (this.state.errors.password !== null):
               this.setState({alert_message: "error"});
               const errorEmailPassword = Object.values(this.state.errors);
-              this.setState({msg_error: errorEmailPassword})
+              this.setState({msg_error: errorEmailPassword});
             break;
           default:
-            this.setState({alert_message: "error"}) 
+            this.setState({alert_message: "error"});
             const allErrors = Object.values(this.state.errors);
-            this.setState({msg_error: allErrors})
+            this.setState({msg_error: allErrors});
             break;
         }
       })
-      this.setState(estadoInicial)
+      this.setState(estadoInicial);
   }
 
   handleInputChange = (event) => {
@@ -105,43 +96,43 @@ class RegisterUser extends React.Component {
   }
 
   render() {
-    const { nome, email, password, administrador, alert_message, success} = this.state;
+    const { nome, email, password, administrador, alert_message, success } = this.state;
     return (
       <div className="login-page">
-        {alert_message==="success"?<SuccessAlert nome={ success } > </SuccessAlert>:null}
-        {this.state.msg_error.map((item , index)=> {
-          return <ErrorAlert nome={ item } key={index} display={this.state.display}></ErrorAlert>;
-        })}
+        { alert_message==="success" ? <SuccessAlert name={ success }></SuccessAlert> : null }
+        { this.state.msg_error.map((item, index)=> {
+          return <ErrorAlert name={ item } key={index} display={ this.state.display }></ErrorAlert>;
+        }) }
         <form onSubmit={ this.submitHandler }>
-           <div className="form" >
+           <div className="form">
            <h1 className="text-success">ServeRest</h1>
           <br></br>
           <h2 className="font-robot">Cadastro </h2>
-            <input 
-              type="text" 
-              className="form-control" 
-              placeholder="Digite seu nome" 
-              name="nome" value={ nome } 
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Digite seu nome"
+              name="nome" value={ nome }
               onChange={this.changeHandler}></input>
             <br></br>
-            <input type="email" 
-              className="form-control" 
-              placeholder="Digite seu email" 
-              name="email" value={ email } 
+            <input type="email"
+              className="form-control"
+              placeholder="Digite seu email"
+              name="email" value={ email }
               onChange={this.changeHandler}></input>
             <br></br>
-            <input type="password" 
-              className="form-control" 
-              placeholder="Digite sua senha" 
-              name="password" value={ password } 
+            <input type="password"
+              className="form-control"
+              placeholder="Digite sua senha"
+              name="password" value={ password }
               onChange={this.changeHandler}></input>
             <br></br>
             <div className="form-check disabled">
               <label className="form-check-label">
-                <input 
-                  className="form-check-input" 
-                  type="checkbox" value={ administrador }  
-                  disabled=""  
+                <input
+                  className="form-check-input"
+                  type="checkbox" value={ administrador }
+                  disabled=""
                   onChange={this.handleInputChange}></input>
                   Cadastrar como Administrador
               </label>
@@ -149,7 +140,10 @@ class RegisterUser extends React.Component {
             <br></br>
             <button type="submit" className="btn btn-primary">Entrar</button>
             <br></br>
-            <p className="message">Já é cadastrado?{ linkButton('Entrar', 'login', '/login') }</p>
+            <p 
+              className="message">Já é cadastrado?
+              <LinkButton dataTestId="login" text="Entrar" route="/login"></LinkButton>
+            </p>
           </div>
         </form>
       </div>
