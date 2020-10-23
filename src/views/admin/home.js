@@ -1,32 +1,22 @@
 
-import Navbar from '../../component/navbar'
+import Navbar from '../../component/navbar';
 import React from 'react';
-import axios from 'axios';
 import history from '../../services/history';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 
 const redirectPage = (route) => history.push(route);
 
 class Home extends React.Component {
-
   constructor(props) {
     super(props);
-    
+
     this.state = {
-      nome: ''
+      nome: '',
     }
   }
 
   componentDidMount() {
-    axios
-    .get('http://localhost:3000/usuarios')
-    .then( response => { 
-     console.log(response.data.usuarios[0].nome);
-     this.setState({nome: response.data.usuarios[0].nome });
-    })
-    .catch(error => {
-        console.log(error.response.data );
-    })
+    this.setState({ nome: localStorage.getItem('@nome-do-app/userNome') });
   }
 
   render() {
