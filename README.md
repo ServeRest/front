@@ -1,7 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-
-
 ## Available Scripts
 
 Dentro da pasta do projeto você pode rodar o seguinte comando:
@@ -24,7 +22,7 @@ Caso tenho algum projeto aberto na porta 3000, no terminal o react irá te pergu
 * [ ] Cadastrar Usuários
   * [x] Cadastrar usuários com sucesso.
   * [x] Validação de erros.
-  * [ ] Ao cadastrar ser redirecionado conforme for o perfil.
+  * [x] Ao cadastrar ser redirecionado conforme for o perfil.
   * [ ] Fechar alertas/msg de erros.
 
 * [ ] Administrador
@@ -37,13 +35,13 @@ Caso tenho algum projeto aberto na porta 3000, no terminal o react irá te pergu
   * [ ] Cadastrar Usuários
     * [x] Cadastrar usuários com sucesso.
     * [x] Validação de erros.
-    * [ ] Ao cadastrar ser redirecionado para lista de usuários.
+    * [x] Ao cadastrar ser redirecionado para lista de usuários.
     * [ ] Fechar alertas/msg de erros.
 
   * [ ] Cadastrar Produtos
     * [x] Cadastrar produtos com sucesso.
     * [x] Validação de erros.
-    * [ ] Ao cadastrar ser redirecionado para lista de produtos.
+    * [x] Ao cadastrar ser redirecionado para lista de produtos.
     * [ ] Fechar alertas/msg de erros.
 
   * [ ] Listar Usuários
@@ -54,7 +52,8 @@ Caso tenho algum projeto aberto na porta 3000, no terminal o react irá te pergu
     * [ ] Adicionar um botão para voltar a tela de cadastro.
 
   * [ ] Listar Produtos
-    * [ ] Listar produtos com sucesso.
+    * [x] Listar produtos com sucesso.
+    * [ ] Listar imagem.
     * [ ] Editar um produto.
     * [ ] Excluir um produto.
     * [ ] Fazer paginação.

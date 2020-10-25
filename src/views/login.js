@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import 'bootswatch/dist/minty/bootstrap.min.css';
-import SuccessAlert from '../component/alert';
 import ErrorAlert from '../component/errorAlert';
 import { validateLogin } from '../services/validateUser';
 import LinkButton from '../component/linkButton';
@@ -53,7 +52,6 @@ class Login extends React.Component {
     const { email, password, alert_message, success} = this.state;
     return (
       <div className="login-page">
-        { alert_message==="success" ? <SuccessAlert name={ success }></SuccessAlert> : null }
         { this.state.msg_error.map((item, index) => {
           return <ErrorAlert name={ item } key={ index } display={ this.state.display }></ErrorAlert>;
         })}

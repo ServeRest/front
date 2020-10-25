@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import 'bootswatch/dist/minty/bootstrap.min.css';
-import SuccessAlert from '../component/alert'
 import ErrorAlert from '../component/errorAlert'
 import LinkButton from '../component/linkButton';
+import { validateLogin, login } from '../services/validateUser';
 
 const estadoInicial = { nome: '', email: '', password: '', administrador: 'false'}
 
@@ -31,21 +31,29 @@ class RegisterUser extends React.Component {
     axios
       .post('https://api.serverest.dev/usuarios', {
         nome: this.state.nome,
-        email:this.state.email,
+        email: this.state.email,
         password: this.state.password,
         administrador: this.state.administrador,
        })
       .then( response => {
         this.setState({alert_message: "success"});
-        this.setState({success: response.data.message })
+        this.setState({success: response.data.message });
+
+        localStorage.setItem('@nome-do-app/userEmail', this.state.email);
+        localStorage.setItem('@nome-do-app/userPassword', this.state.password);
+        const emailUser = localStorage.getItem('@nome-do-app/userEmail');
+        const passwordUser = localStorage.getItem('@nome-do-app/userPassword');
+        const tokenUser = localStorage.getItem('@nome-do-app/userToken');
+        login(emailUser, passwordUser);
+        validateLogin(emailUser);
       })
       .catch(error => {
         this.setState({errors: error.response.data });
         this.setState({alert_message: "error"});
         const allErrors = Object.values(this.state.errors);
         this.setState({msg_error: allErrors});
+        this.setState(estadoInicial);
       })
-    this.setState(estadoInicial);
   }
 
   handleInputChange = (event) => {
@@ -58,7 +66,6 @@ class RegisterUser extends React.Component {
     const { nome, email, password, administrador, alert_message, success } = this.state;
     return (
       <div className="login-page">
-        { alert_message==="success" ? <SuccessAlert name={ success }></SuccessAlert> : null }
         { this.state.msg_error.map((item, index)=> {
           return <ErrorAlert name={ item } key={index} display={ this.state.display }></ErrorAlert>;
         }) }

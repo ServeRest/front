@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from '../../component/navbar';
+import Navbar from '../../component/navbarAdmin';
 import 'bootswatch/dist/minty/bootstrap.min.css';
-import { validateToken } from '../../services/validateAccessPages';
+import { validateToken } from '../../services/validateUser';
 
 class Reports extends React.Component {
   constructor(props) {

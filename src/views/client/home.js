@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../../component/navbar';
+import Navbar from '../../component/navbarClient';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 
 class Home extends React.Component {

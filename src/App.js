@@ -8,6 +8,7 @@ import RegisterProducts from './views/admin/registerProducts';
 import RegisterUser from './views/admin/registerUser';
 import Report from './views/admin/report';
 import ShowUsers from './views/admin/showUsers';
+import ShowProducts from './views/admin/showProducts';
 import Login from './views/login';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import './App.css';
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/admin/cadastrarusuarios" component={ RegisterUser } />
           <Route exact path="/admin/cadastrarprodutos" component={ RegisterProducts } />
           <Route exact path="/admin/listarusuarios" component={ ShowUsers } />
+          <Route exact path="/admin/listarprodutos" component={ ShowProducts } />
           <Route exact path="/admin/relatorios" component={ Report } />
           <Route exact path="/home" component={ HomeClient } />
           <Route exact path="/cadastrarusuarios" component={ CadastroUsuario } />

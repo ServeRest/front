@@ -1,13 +1,12 @@
-import Navbar from '../../component/navbar'
+import Navbar from '../../component/navbarAdmin'
 import React from 'react';
 import axios from 'axios';
-import history from '../../services/history';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import SuccessAlert from '../../component/alert';
 import ErrorAlert from '../../component/errorAlert';
-import { validateToken } from '../../services/validateAccessPages';
+import { validateToken } from '../../services/validateUser';
+import history from '../../services/history';
 
-const redirectPage = (route) => history.push(route);
 const estadoInicial = { nome: '', email: '', password: '', administrador: 'false' }
 
 class RegisterUsers extends React.Component {
@@ -45,6 +44,7 @@ class RegisterUsers extends React.Component {
       .then( response => {
         this.setState({ alert_message: "success" });
         this.setState({ success: response.data.message });
+        history.push('/admin/listarusuarios');
       })
       .catch(error => {
         this.setState({ errors: error.response.data });
@@ -66,11 +66,11 @@ class RegisterUsers extends React.Component {
     return (
       <div>
         <Navbar></Navbar>
-          { alert_message==="success" ? <SuccessAlert name={ success }></SuccessAlert> : null }
-          { this.state.msg_error.map((item , index)=> {
-            return <ErrorAlert name={ item } key={ index } display={ this.state.display }></ErrorAlert>;
-          }) }
         <form className="jumbotron" onSubmit={ this.submitHandler }>
+          { alert_message==="success" ? <SuccessAlert name={ success }></SuccessAlert> : null }
+            { this.state.msg_error.map((item , index)=> {
+              return <ErrorAlert name={ item } key={ index } display={ this.state.display }></ErrorAlert>;
+            }) }
           <h1>Cadastro de usuários</h1>
           <hr className="my-4"></hr>
           <div className="row">

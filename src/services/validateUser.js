@@ -18,3 +18,22 @@ export function validateLogin(emaill) {
       });
     });
 }
+
+export function validateToken() {
+  const token = localStorage.getItem('@nome-do-app/userToken');
+  if (token === null) { history.push('/login'); }
+}
+
+export function login(email, password) {
+  axios
+    .post('https://api.serverest.dev/login', {
+      email: email,
+      password: password,
+    })
+    .then((response) => {
+      localStorage.setItem('@nome-do-app/userToken', response.data.authorization);
+    })
+    .catch((error) => {
+      console.log(error.data);
+    });
+}

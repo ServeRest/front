@@ -1,7 +1,7 @@
 import React from 'react';
 import ButtonLink from './buttonLink';
 
-export default function Navbar() {
+export default function NavbarAdmin() {
   return (
     <nav className="navbar navbar-expand-lg background-navbar">
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +17,13 @@ export default function Navbar() {
             <ButtonLink dataTestId="cadastrar-usuarios" text="Cadastrar Usuários" route="/admin/cadastrarusuarios" />
           </li>
           <li className="nav-item">
+            <ButtonLink dataTestId="listar-usuarios" text="Listar Usuários" route="/admin/listarusuarios" />
+          </li>
+          <li className="nav-item">
             <ButtonLink dataTestId="cadastrar-produtos" text="Cadastrar Produtos" route="/admin/cadastrarprodutos" />
+          </li>
+          <li className="nav-item">
+            <ButtonLink dataTestId="listar-produtos" text="Listar Produtos" route="/admin/listarprodutos" />
           </li>
           <li className="nav-item">
             <ButtonLink dataTestId="relatorios" text="Relátorios" route="/admin/relatorios" />

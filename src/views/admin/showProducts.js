@@ -8,7 +8,7 @@ class ShowUsers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      persons: [],
+      products: [],
     };
   }
 
@@ -18,26 +18,28 @@ class ShowUsers extends React.Component {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Accept': 'application/json',
+        'Authorization': localStorage.getItem('@nome-do-app/userToken'),
       },
     };
 
     axios
-      .get('https://api.serverest.dev/usuarios', config)
+      .get('https://api.serverest.dev/produtos', config)
       .then((response) => {
-        const usuarios = response.data;
-        this.setState({ persons: usuarios.usuarios });
+        const produtos = response.data;
+        this.setState({ products: produtos.produtos });
       });
   }
 
   renderRows() {
-    const { persons } = this.state;
-    return persons.map((person) => {
+    const { products } = this.state;
+    return products.map((product) => {
       return (
-        <tr key={ person._id }>
-          <td>{ person.nome }</td>
-          <td>{ person.email }</td>
-          <td>{ person.password }</td>
-          <td>{ person.administrador }</td>
+        <tr key={ product._id }>
+          <td>{ product.nome }</td>
+          <td>{ product.preco }</td>
+          <td>{ product.descricao }</td>
+          <td>{product.quantidade }</td>
+          <td>{ product.imagem }</td>
           <td>
             <div className="row center">
               <button type="button" className="btn btn-info">Editar</button>
@@ -56,9 +58,10 @@ class ShowUsers extends React.Component {
           <thead>
             <tr>
               <th scope="col">Nome</th>
-              <th scope="col">Email</th>
-              <th scope="col">Senha</th>
-              <th scope="col">Administrador</th>
+              <th scope="col">Preço</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Quantidade</th>
+              <th scope="col">Imagem</th>
               <th scope="col">Ações</th>
             </tr>
           </thead>
@@ -76,7 +79,7 @@ class ShowUsers extends React.Component {
         <Navbar />
         <div className="jumbotron">
           <h1>
-            Lista dos usuários
+            Lista dos Produtos
           </h1>
           <hr className="my-4" />
           <p className="row">

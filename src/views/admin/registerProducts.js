@@ -1,10 +1,11 @@
-import Navbar from '../../component/navbar';
+import Navbar from '../../component/navbarAdmin';
 import React from 'react';
 import axios from 'axios';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import SuccessAlert from '../../component/alert';
 import ErrorAlert from '../../component/errorAlert';
-import { validateToken } from '../../services/validateAccessPages';
+import { validateToken } from '../../services/validateUser';
+import history from '../../services/history';
 
 const estadoInicial = { name: '', price: '', description: '', quantity: '', imagem: '' }
 
@@ -52,6 +53,7 @@ class RegisterProducts extends React.Component {
       .then( response => {
         this.setState({alert_message: "success"});
         this.setState({success: response.data.message });
+        history.push('/admin/listarprodutos');
       })
       .catch(error => {
         this.setState({errors: error.response.data });
