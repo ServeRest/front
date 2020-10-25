@@ -41,52 +41,11 @@ class RegisterUser extends React.Component {
       })
       .catch(error => {
         this.setState({errors: error.response.data });
-
-        switch (this.state.errors !==null) {
-          case (this.state.errors.nome != null) && (this.state.errors.email == null) && (this.state.errors.password == null):
-            this.setState({alert_message: "error"});
-            const errorName = Object.values(this.state.errors);
-            this.setState({msg_error: errorName});
-            break;
-          case (this.state.errors.nome == null) && (this.state.errors.email !== null) && (this.state.errors.password == null):
-            if (this.state.errors.message === 'Este email já está sendo usado') {
-              this.setState({alert_message: "error"});
-              const errorEmailUsed = Object.values(this.state.errors);
-              this.setState({msg_error: errorEmailUsed});
-            } else {
-              this.setState({alert_message: "error"});
-              const errorEmail = Object.values(this.state.errors);
-              this.setState({msg_error: errorEmail});
-            }
-            break;
-          case (this.state.errors.nome == null) && (this.state.errors.email == null) && (this.state.errors.password !== null):
-            this.setState({alert_message: "error"});
-            const errorPassword = Object.values(this.state.errors);
-            this.setState({msg_error: errorPassword});
-            break;
-          case (this.state.errors.nome !== null) && (this.state.errors.email !== null) && (this.state.errors.password == null):
-            this.setState({alert_message: "error"});
-            const errorNameEmail = Object.values(this.state.errors);
-            this.setState({msg_error: errorNameEmail});
-            break;
-          case (this.state.errors.nome !== null) && (this.state.errors.email == null) && (this.state.errors.password !== null):
-            this.setState({alert_message: "error"});
-            const errorNamePassword = Object.values(this.state.errors);
-            this.setState({msg_error: errorNamePassword});
-            break;
-            case (this.state.errors.nome == null) && (this.state.errors.email !== null) && (this.state.errors.password !== null):
-              this.setState({alert_message: "error"});
-              const errorEmailPassword = Object.values(this.state.errors);
-              this.setState({msg_error: errorEmailPassword});
-            break;
-          default:
-            this.setState({alert_message: "error"});
-            const allErrors = Object.values(this.state.errors);
-            this.setState({msg_error: allErrors});
-            break;
-        }
+        this.setState({alert_message: "error"});
+        const allErrors = Object.values(this.state.errors);
+        this.setState({msg_error: allErrors});
       })
-      this.setState(estadoInicial);
+    this.setState(estadoInicial);
   }
 
   handleInputChange = (event) => {

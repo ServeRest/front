@@ -42,23 +42,9 @@ class Login extends React.Component {
       })
       .catch(error => {
         this.setState({errors: error.response.data });
-        switch (this.state.errors !==null) {
-          case (this.state.errors.email !== null) && (this.state.errors.password == null):
-              this.setState({alert_message: "error"});
-              const errorEmail = Object.values(this.state.errors);
-              this.setState({msg_error: errorEmail});
-            break;
-          case (this.state.errors.email == null) && (this.state.errors.password !== null):
-            this.setState({alert_message: "error"});
-            const errorPassword = Object.values(this.state.errors);
-            this.setState({msg_error: errorPassword});
-            break;
-          default:
-            this.setState({alert_message: "error"});
-            const allErrors = Object.values(this.state.errors);
-            this.setState({msg_error: allErrors});
-            break;
-        }
+        this.setState({alert_message: "error"});
+        const allErrors = Object.values(this.state.errors);
+        this.setState({msg_error: allErrors});
         this.setState(estadoInicial);
       });
   }
