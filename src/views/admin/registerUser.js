@@ -2,7 +2,6 @@ import Navbar from '../../component/navbarAdmin'
 import React from 'react';
 import axios from 'axios';
 import 'bootswatch/dist/minty/bootstrap.min.css';
-import SuccessAlert from '../../component/alert';
 import ErrorAlert from '../../component/errorAlert';
 import { validateToken } from '../../services/validateUser';
 import history from '../../services/history';
@@ -18,7 +17,6 @@ class RegisterUsers extends React.Component {
       email: '',
       password: '',
       administrador: 'false',
-      alert_message: '',
       errors: '',
       msg_error: []
     }
@@ -41,14 +39,11 @@ class RegisterUsers extends React.Component {
         password: this.state.password,
         administrador: this.state.administrador,
        } )
-      .then( response => {
-        this.setState({ alert_message: "success" });
-        this.setState({ success: response.data.message });
+      .then((response) => {
         history.push('/admin/listarusuarios');
       })
       .catch(error => {
         this.setState({ errors: error.response.data });
-        this.setState({ alert_message: "error" });
         const allErrors = Object.values(this.state.errors);
         this.setState({ msg_error: allErrors });
       })
@@ -62,12 +57,11 @@ class RegisterUsers extends React.Component {
   }
     
   render() {
-    const { name, email, password, administrador, alert_message, success} = this.state;
+    const { name, email, password, administrador } = this.state;
     return (
       <div>
         <Navbar></Navbar>
         <form className="jumbotron" onSubmit={ this.submitHandler }>
-          { alert_message==="success" ? <SuccessAlert name={ success }></SuccessAlert> : null }
             { this.state.msg_error.map((item , index)=> {
               return <ErrorAlert name={ item } key={ index } display={ this.state.display }></ErrorAlert>;
             }) }

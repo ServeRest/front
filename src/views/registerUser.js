@@ -16,7 +16,6 @@ class RegisterUser extends React.Component {
       email: '',
       password: '',
       administrador: 'false',
-      alert_message: '',
       errors: '',
       msg_error: [],
     }
@@ -35,10 +34,7 @@ class RegisterUser extends React.Component {
         password: this.state.password,
         administrador: this.state.administrador,
        })
-      .then( response => {
-        this.setState({alert_message: "success"});
-        this.setState({success: response.data.message });
-
+      .then((response) => {
         localStorage.setItem('@nome-do-app/userEmail', this.state.email);
         localStorage.setItem('@nome-do-app/userPassword', this.state.password);
         const emailUser = localStorage.getItem('@nome-do-app/userEmail');
@@ -49,7 +45,6 @@ class RegisterUser extends React.Component {
       })
       .catch(error => {
         this.setState({errors: error.response.data });
-        this.setState({alert_message: "error"});
         const allErrors = Object.values(this.state.errors);
         this.setState({msg_error: allErrors});
         this.setState(estadoInicial);
@@ -63,7 +58,7 @@ class RegisterUser extends React.Component {
   }
 
   render() {
-    const { nome, email, password, administrador, alert_message, success } = this.state;
+    const { nome, email, password, administrador } = this.state;
     return (
       <div className="login-page">
         { this.state.msg_error.map((item, index)=> {

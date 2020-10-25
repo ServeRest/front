@@ -14,7 +14,6 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      alert_message: '',
       errors: '',
       msg_error: [],
     }
@@ -31,9 +30,7 @@ class Login extends React.Component {
         email: this.state.email,
         password: this.state.password,
        })
-      .then( response => {
-        this.setState({alert_message: "success"});
-        this.setState({success: response.data.message });
+      .then((response) => {
         localStorage.setItem('@nome-do-app/userEmail', this.state.email);
         localStorage.setItem('@nome-do-app/userToken', response.data.authorization);
         const emailStorage = localStorage.getItem('@nome-do-app/userEmail');
@@ -41,7 +38,6 @@ class Login extends React.Component {
       })
       .catch(error => {
         this.setState({errors: error.response.data });
-        this.setState({alert_message: "error"});
         const allErrors = Object.values(this.state.errors);
         this.setState({msg_error: allErrors});
         this.setState(estadoInicial);
@@ -49,7 +45,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { email, password, alert_message, success} = this.state;
+    const { email, password } = this.state;
     return (
       <div className="login-page">
         { this.state.msg_error.map((item, index) => {

@@ -2,7 +2,6 @@ import Navbar from '../../component/navbarAdmin';
 import React from 'react';
 import axios from 'axios';
 import 'bootswatch/dist/minty/bootstrap.min.css';
-import SuccessAlert from '../../component/alert';
 import ErrorAlert from '../../component/errorAlert';
 import { validateToken } from '../../services/validateUser';
 import history from '../../services/history';
@@ -19,7 +18,6 @@ class RegisterProducts extends React.Component {
       description: '',
       quantity: '',
       imagem: '',
-      alert_message: '',
       errors: '',
       msg_error: [],
     }
@@ -49,15 +47,12 @@ class RegisterProducts extends React.Component {
         descricao: this.state.description,
         quantidade: this.state.quantity,
         imagem: this.state.imagem,
-    }, config )
-      .then( response => {
-        this.setState({alert_message: "success"});
-        this.setState({success: response.data.message });
+    }, config)
+      .then((response) => {
         history.push('/admin/listarprodutos');
       })
       .catch(error => {
         this.setState({errors: error.response.data });
-        this.setState({alert_message: "error"});
         const allErrors = Object.values(this.state.errors);
         this.setState({msg_error: allErrors});
       })
@@ -65,12 +60,11 @@ class RegisterProducts extends React.Component {
   }
 
   render() {
-    const { name, price, description, quantity, imagem, alert_message, success } = this.state;
+    const { name, price, description, quantity, imagem } = this.state;
     return (
       <div>
         <Navbar></Navbar>
         <form className="jumbotron" onSubmit={ this.submitHandler }>
-        { alert_message==="success" ? <SuccessAlert name={ success }></SuccessAlert> : null }
           { this.state.msg_error.map((item , index)=> {
             return <ErrorAlert name={ item } key={ index } display={ this.state.display }></ErrorAlert>;
           })}
