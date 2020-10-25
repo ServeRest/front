@@ -1,68 +1,80 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+
 ## Available Scripts
 
-In the project directory, you can run:
+Dentro da pasta do projeto você pode rodar o seguinte comando:
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+que o projeto vai abrir default na url:
+Open [http://localhost:3000](http://localhost:3000).
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Caso tenho algum projeto aberto na porta 3000, no terminal o react irá te perguntar se quer rodar em outra porta basta digitar `yes`. 
 
-### `npm test`
+### Progresso do projeto Front
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* [ ] Tela de login
+  * [x] Login com sucesso.
+  * [x] Validação de erros.
+  * [x] Redirecionamento baseado no perfil do usuário.
+  * [ ] Fechar alertas/msg de erros.
 
-### `npm run build`
+* [ ] Cadastrar Usuários
+  * [x] Cadastrar usuários com sucesso.
+  * [x] Validação de erros.
+  * [ ] Ao cadastrar ser redirecionado conforme for o perfil.
+  * [ ] Fechar alertas/msg de erros.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* [ ] Administrador
+ 
+  * [ ] Home
+    * [x] Navbar.
+    * [x] Menus com redirecionamento para as páginas.
+    * [ ] Botão logout.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+  * [ ] Cadastrar Usuários
+    * [x] Cadastrar usuários com sucesso.
+    * [x] Validação de erros.
+    * [ ] Ao cadastrar ser redirecionado para lista de usuários.
+    * [ ] Fechar alertas/msg de erros.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  * [ ] Cadastrar Produtos
+    * [x] Cadastrar produtos com sucesso.
+    * [x] Validação de erros.
+    * [ ] Ao cadastrar ser redirecionado para lista de produtos.
+    * [ ] Fechar alertas/msg de erros.
 
-### `npm run eject`
+  * [ ] Listar Usuários
+    * [x] Listar usuários com sucesso.
+    * [ ] Editar um usuário.
+    * [ ] Excluir um usuário.
+    * [ ] Fazer paginação.
+    * [ ] Adicionar um botão para voltar a tela de cadastro.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  * [ ] Listar Produtos
+    * [ ] Listar produtos com sucesso.
+    * [ ] Editar um produto.
+    * [ ] Excluir um produto.
+    * [ ] Fazer paginação.
+    * [ ] Adicionar um botão para voltar a tela de cadastro.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  * [ ] Relatórios
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* [ ] Cliente
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  * [ ] Home
+    * [x] Navbar.
+    * [ ] Listar produtos com sucesso.
+    * [ ] Adicionar produtos ao carrinho.
+    * [ ] Botão do carrinho.
+    * [ ] Botão logout.
+    * [ ] Fazer paginação dos produtos.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  * [ ] Carrinho
+    * [ ] Listar carrinho.
+    * [ ] Listar produtos com sucesso.
+    * [ ] Fazer paginação dos produtos.
+    * [ ] Finalizar o carrinho.
+    * [ ] Excluir o carrinho.
