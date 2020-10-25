@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../../component/navbar';
 import history from '../../services/history';
 import 'bootswatch/dist/minty/bootstrap.min.css';
+import { validateToken } from '../../services/validateAccessPages';
 
 const redirectPage = (route) => history.push(route);
 
@@ -15,6 +16,7 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+    validateToken();
     this.setState({ nome: localStorage.getItem('@nome-do-app/userNome') });
   }
 

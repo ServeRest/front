@@ -5,6 +5,7 @@ import history from '../../services/history';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import SuccessAlert from '../../component/alert';
 import ErrorAlert from '../../component/errorAlert';
+import { validateToken } from '../../services/validateAccessPages';
 
 const redirectPage = (route) => history.push(route);
 const estadoInicial = { nome: '', email: '', password: '', administrador: 'false' }
@@ -22,6 +23,10 @@ class RegisterUsers extends React.Component {
       errors: '',
       msg_error: []
     }
+  }
+
+  componentDidMount() {
+    validateToken();
   }
 
   changeHandler = e => {

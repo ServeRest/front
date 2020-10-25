@@ -4,6 +4,7 @@ import axios from 'axios';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import SuccessAlert from '../../component/alert';
 import ErrorAlert from '../../component/errorAlert';
+import { validateToken } from '../../services/validateAccessPages';
 
 const estadoInicial = { name: '', price: '', description: '', quantity: '', imagem: '' }
 
@@ -21,6 +22,10 @@ class RegisterProducts extends React.Component {
       errors: '',
       msg_error: [],
     }
+  }
+
+  componentDidMount() {
+    validateToken();
   }
 
   changeHandler = e => {
