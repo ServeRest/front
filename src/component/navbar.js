@@ -1,29 +1,29 @@
-import React from 'react'
-import ButtonLink from '../component/buttonLink'
+import React from 'react';
+import ButtonLink from './buttonLink';
 
-export default function Navbar(){
-    return (
-      <nav class="navbar navbar-expand-lg background-navbar">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+export default function Navbar() {
+  return (
+    <nav className="navbar navbar-expand-lg background-navbar">
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span className="navbar-toggler-icon" />
       </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand text-light" href="#">ServRest</a>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item">
-          <ButtonLink dataTestId="home" text="Home" route="/admin/home"></ButtonLink>
+      <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a className="navbar-brand text-light" href="#">ServRest</a>
+        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li className="nav-item">
+            <ButtonLink dataTestId="home" text="Home" route="/admin/home" />
           </li>
-          <li class="nav-item">
-          <ButtonLink dataTestId="cadastrar-usuarios" text="Cadastrar Usuários" route="/admin/cadastrarusuarios"></ButtonLink>
+          <li className="nav-item">
+            <ButtonLink dataTestId="cadastrar-usuarios" text="Cadastrar Usuários" route="/admin/cadastrarusuarios" />
           </li>
-          <li class="nav-item">
-          <ButtonLink dataTestId="cadastrar-produtos" text="Cadastrar Produtos" route="/admin/cadastrarprodutos"></ButtonLink>
+          <li className="nav-item">
+            <ButtonLink dataTestId="cadastrar-produtos" text="Cadastrar Produtos" route="/admin/cadastrarprodutos" />
           </li>
-          <li class="nav-item">
-          <ButtonLink dataTestId="relatorios" text="Relátorios" route="/admin/relatorios"></ButtonLink>
+          <li className="nav-item">
+            <ButtonLink dataTestId="relatorios" text="Relátorios" route="/admin/relatorios" />
           </li>
         </ul>
       </div>
     </nav>
-    )
+  );
 }

@@ -1,16 +1,20 @@
-import Navbar from '../../component/navbar'
 import React from 'react';
-import axios from 'axios';
+import Navbar from '../../component/navbar';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 
 class RegisterProducts extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   render() {
     return (
       <>
-      <Navbar></Navbar>
+        <Navbar />
+        <p>cadatro de produtos</p>
       </>
-    )
+    );
   }
 }
 
