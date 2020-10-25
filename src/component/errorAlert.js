@@ -15,7 +15,7 @@ export default class ErrorAlert extends Component {
         { this.state.display
           && <div className="alert alert-dismissible alert-secondary">
             <a href="/#" className="alert-link">{ this.props.name }</a>
-             </div>}
+          </div>}
       </div>
     );
   }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import history from './services/history';
-import 'bootswatch/dist/minty/bootstrap.min.css';
 import CadastroUsuario from './views/registerUser';
 import Home from './views/admin/home';
 import HomeClient from './views/client/home';
@@ -10,6 +9,7 @@ import RegisterUser from './views/admin/registerUser';
 import Report from './views/admin/report';
 import ShowUsers from './views/admin/showUsers';
 import Login from './views/login';
+import 'bootswatch/dist/minty/bootstrap.min.css';
 import './App.css';
 
 function App() {

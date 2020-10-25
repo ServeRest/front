@@ -1,16 +1,20 @@
-import Navbar from '../../component/navbar'
 import React from 'react';
-import axios from 'axios';
+import Navbar from '../../component/navbar';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 
 class ShowUsers extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   render() {
     return (
       <>
-      <Navbar></Navbar>
+        <Navbar />
+        <p>lista dos usuarios</p>
       </>
-    )
+    );
   }
 }
 

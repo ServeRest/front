@@ -15,6 +15,7 @@
   "plugins": ["react", "react-hooks"],
   "rules": {
     "linebreak-style": ["error", "unix"],
+    "import/no-named-as-default": 1,
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "class-methods-use-this": ["off"],
