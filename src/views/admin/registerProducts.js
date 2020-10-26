@@ -40,7 +40,7 @@ class RegisterProducts extends React.Component {
       }
     };
     axios
-    .post('https://api.serverest.dev/produtos',
+    .post('https://serverest.dev/produtos',
       {
         nome: this.state.name,
         preco: this.state.price,

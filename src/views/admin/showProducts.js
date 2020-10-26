@@ -23,7 +23,7 @@ class ShowUsers extends React.Component {
     };
 
     axios
-      .get('https://api.serverest.dev/produtos', config)
+      .get('https://serverest.dev/produtos', config)
       .then((response) => {
         const produtos = response.data;
         this.setState({ products: produtos.produtos });
