@@ -9,7 +9,7 @@ export function validateLogin(emaill) {
       usuarios.forEach((element) => {
         if (element.email === emaill) {
           if (element.administrador === 'true') {
-            localStorage.setItem('@nome-do-app/userNome', element.nome);
+            localStorage.setItem('serverest/userNome', element.nome);
             history.push('/admin/home');
           } else {
             history.push('/home');
@@ -20,7 +20,7 @@ export function validateLogin(emaill) {
 }
 
 export function validateToken() {
-  const token = localStorage.getItem('@nome-do-app/userToken');
+  const token = localStorage.getItem('serverest/userToken');
   if (token === null) { history.push('/login'); }
 }
 
@@ -31,7 +31,7 @@ export function login(email, password) {
       password: password,
     })
     .then((response) => {
-      localStorage.setItem('@nome-do-app/userToken', response.data.authorization);
+      localStorage.setItem('serverest/userToken', response.data.authorization);
     })
     .catch((error) => {
       console.log(error.data);

@@ -17,7 +17,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     validateToken();
-    this.setState({ nome: localStorage.getItem('@nome-do-app/userNome') });
+    this.setState({ nome: localStorage.getItem('serverest/userNome') });
   }
 
   render() {

@@ -18,7 +18,7 @@ class ShowUsers extends React.Component {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Accept': 'application/json',
-        'Authorization': localStorage.getItem('@nome-do-app/userToken'),
+        'Authorization': localStorage.getItem('serverest/userToken'),
       },
     };
 

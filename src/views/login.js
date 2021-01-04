@@ -31,9 +31,9 @@ class Login extends React.Component {
         password: this.state.password,
        })
       .then((response) => {
-        localStorage.setItem('@nome-do-app/userEmail', this.state.email);
-        localStorage.setItem('@nome-do-app/userToken', response.data.authorization);
-        const emailStorage = localStorage.getItem('@nome-do-app/userEmail');
+        localStorage.setItem('serverest/userEmail', this.state.email);
+        localStorage.setItem('serverest/userToken', response.data.authorization);
+        const emailStorage = localStorage.getItem('serverest/userEmail');
         validateLogin(emailStorage);
       })
       .catch(error => {

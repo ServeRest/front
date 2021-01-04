@@ -35,11 +35,11 @@ class RegisterUser extends React.Component {
         administrador: this.state.administrador,
        })
       .then((response) => {
-        localStorage.setItem('@nome-do-app/userEmail', this.state.email);
-        localStorage.setItem('@nome-do-app/userPassword', this.state.password);
-        const emailUser = localStorage.getItem('@nome-do-app/userEmail');
-        const passwordUser = localStorage.getItem('@nome-do-app/userPassword');
-        const tokenUser = localStorage.getItem('@nome-do-app/userToken');
+        localStorage.setItem('serverest/userEmail', this.state.email);
+        localStorage.setItem('serverest/userPassword', this.state.password);
+        const emailUser = localStorage.getItem('serverest/userEmail');
+        const passwordUser = localStorage.getItem('serverest/userPassword');
+        const tokenUser = localStorage.getItem('serverest/userToken');
         login(emailUser, passwordUser);
         validateLogin(emailUser);
       })

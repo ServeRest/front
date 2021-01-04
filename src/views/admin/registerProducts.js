@@ -36,7 +36,7 @@ class RegisterProducts extends React.Component {
     const config = {
       headers: {
         'Accept': 'application/json',
-        'Authorization': localStorage.getItem('@nome-do-app/userToken'),
+        'Authorization': localStorage.getItem('serverest/userToken'),
       }
     };
     axios
