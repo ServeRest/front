@@ -15,7 +15,7 @@ export default function NavbarAdmin() {
         <span className="navbar-toggler-icon" />
       </button>
       <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a className="navbar-brand text-light" href="#">ServRest</a>
+        <a className="navbar-brand text-light" href="#">ServeRest</a>
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
           <li className="nav-item">
             <ButtonLink dataTestId="home" text="Home" route="/admin/home" />
@@ -33,7 +33,7 @@ export default function NavbarAdmin() {
             <ButtonLink dataTestId="listar-produtos" text="Listar Produtos" route="/admin/listarprodutos" />
           </li>
           <li className="nav-item">
-            <ButtonLink dataTestId="relatorios" text="Relátorios" route="/admin/relatorios" />
+            <ButtonLink dataTestId="relatorios" text="Relatórios" route="/admin/relatorios" />
           </li>
         </ul>
         <form onClick={ submitHandler }>
