@@ -30,6 +30,18 @@ class ShowUsers extends React.Component {
       });
   }
 
+  removeProduct(id) {
+    const url = `https://serverest.dev/produtos/${id}`
+    const config = {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        Accept: 'application/json',
+        Authorization: localStorage.getItem('serverest/userToken'),
+      },
+    }
+    axios.delete(url, config).then(res => { window.location.reload(); })
+  }
+
   renderRows() {
     const { products } = this.state;
     return products.map((product) => {
@@ -43,7 +55,12 @@ class ShowUsers extends React.Component {
           <td>
             <div className="row center">
               <button type="button" className="btn btn-info">Editar</button>
-              <button type="button" className="btn btn-danger">Excluir</button>
+              <button 
+                type="button" 
+                className="btn btn-danger"
+                onClick={ () => this.removeProduct(product._id) }>
+                Excluir
+              </button>
             </div>
           </td>
         </tr>

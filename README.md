@@ -47,9 +47,8 @@ Caso tenho algum projeto aberto na porta 3000, no terminal o react irá te pergu
   * [ ] Listar Usuários
     * [x] Listar usuários com sucesso.
     * [ ] Editar um usuário.
-    * [ ] Excluir um usuário.
+    * [x] Excluir um usuário.
     * [ ] Fazer paginação.
-    * [ ] Adicionar um botão para voltar a tela de cadastro.
 
   * [ ] Listar Produtos
     * [x] Listar produtos com sucesso.
@@ -57,7 +56,6 @@ Caso tenho algum projeto aberto na porta 3000, no terminal o react irá te pergu
     * [ ] Editar um produto.
     * [ ] Excluir um produto.
     * [ ] Fazer paginação.
-    * [ ] Adicionar um botão para voltar a tela de cadastro.
 
   * [ ] Relatórios
 

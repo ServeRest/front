@@ -3,12 +3,14 @@ import axios from 'axios';
 import Navbar from '../../component/navbarAdmin';
 import { validateToken } from '../../services/validateUser';
 import 'bootswatch/dist/minty/bootstrap.min.css';
+import ErrorAlert from '../../component/errorAlert';
 
 class ShowUsers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       persons: [],
+      msg_error: [],
     };
   }
 
@@ -17,7 +19,7 @@ class ShowUsers extends React.Component {
     const config = {
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
     };
 
@@ -27,6 +29,16 @@ class ShowUsers extends React.Component {
         const usuarios = response.data;
         this.setState({ persons: usuarios.usuarios });
       });
+  }
+
+  removeUser(id, email) {
+    const emailStorage = localStorage.getItem('serverest/userEmail');
+    if (email === emailStorage) {
+      this.setState( { msg_error: ["Não é possível excluir o próprio usuário!"] } );
+    } else {
+      const url = `https://serverest.dev/usuarios/${id}`;
+      axios.delete(url).then(res => { window.location.reload(); });
+    }
   }
 
   renderRows() {
@@ -41,7 +53,12 @@ class ShowUsers extends React.Component {
           <td>
             <div className="row center">
               <button type="button" className="btn btn-info">Editar</button>
-              <button type="button" className="btn btn-danger">Excluir</button>
+              <button 
+                type="button" 
+                className="btn btn-danger"  
+                onClick={() => this.removeUser(person._id, person.email)}>
+                Excluir
+              </button>
             </div>
           </td>
         </tr>
@@ -52,6 +69,11 @@ class ShowUsers extends React.Component {
   renderTable() {
     return (
       <>
+      <div className="col">
+      { this.state.msg_error.map((item, index) => {
+          return <ErrorAlert name={ item } key={ index } display={ this.state.display }></ErrorAlert>;
+        })}
+      </div>
         <table className="table table-striped">
           <thead>
             <tr>
