@@ -54,7 +54,7 @@ Caso tenho algum projeto aberto na porta 3000, no terminal o react irá te pergu
     * [x] Listar produtos com sucesso.
     * [ ] Listar imagem.
     * [ ] Editar um produto.
-    * [ ] Excluir um produto.
+    * [x] Excluir um produto.
     * [ ] Fazer paginação.
 
   * [ ] Relatórios
