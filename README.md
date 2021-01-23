@@ -68,7 +68,7 @@ Caso tenho algum projeto aberto na porta 3000, no terminal o react irá te pergu
 
   * [ ] Home
     * [x] Navbar.
-    * [ ] Listar produtos com sucesso.
+    * [x] Listar produtos com sucesso.
     * [ ] Adicionar produtos ao carrinho.
     * [ ] Botão do carrinho.
     * [x] Botão logout.
