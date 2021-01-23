@@ -7,6 +7,20 @@
   pointer-events: none;
 }
 
+.espacamento {
+  grid-gap: 10px 10px;
+  padding-left: 22rem;
+}
+
+.img {
+  width: 50;
+  height: 50;
+}
+
+.negrito {
+  font-weight: bolder;
+ }
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
