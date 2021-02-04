@@ -15,6 +15,14 @@ class Home extends React.Component {
     };
   }
 
+  productsDetail = (imagem, nome, preco, quantidade, descricao) => {
+    localStorage.setItem('serverest/imagemProduto', imagem);
+    localStorage.setItem('serverest/nomeProduto', nome);
+    localStorage.setItem('serverest/precoProduto', preco);
+    localStorage.setItem('serverest/quantidadeProduto', quantidade);
+    localStorage.setItem('serverest/descricaoProduto', descricao);
+  }
+
   componentDidMount() {
     validateToken();
     const config = {
@@ -41,13 +49,12 @@ class Home extends React.Component {
           <div className="card-body" key={ product._id }>
             <img className="image" src={product.imagem }/>
             <h5 className="card-title negrito">{ product.nome }</h5>
+            <br></br>
             <h6 className="card-subtitle mb-2 text-muted negrito">Preço: </h6>
             <h6 className="card-subtitle mb-2 text-muted">$ { product.preco }</h6>
-            <a className="card-subtitle mb-2 text-muted negrito ">Qtd: </a>
-            <a className="card-subtitle mb-2 text-muted"> { product.quantidade }</a>
             <br></br>
             <div>
-            <a href="#" class="card-link">Detalhes</a>
+            <a href={'productDetail/' + product._id} class="card-link" onClick={() => this.productsDetail(product.image, product.nome, product.preco, product.quantidade, product.descricao)}>Detalhes</a>
             <br></br>
             <a href="#" class="card-link">Adicionar ao Carrinho</a>
             </div>

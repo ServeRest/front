@@ -10,6 +10,7 @@ import Report from './views/admin/report';
 import ShowUsers from './views/admin/showUsers';
 import ShowProducts from './views/admin/showProducts';
 import Login from './views/login';
+import ProductDetail from './views/client/productDetail';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import './App.css';
 
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/cadastrarusuarios" component={ CadastroUsuario } />
           <Route exact path="/login" component={ Login } />
           <Route exact path="/" render={ () => history.push('/login') } />
+          <Route path="/productDetail/:id" render={() => <ProductDetail/>} />
         </Switch>
       </Router>
     </div>
