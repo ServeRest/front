@@ -39,23 +39,43 @@ class RegisterProducts extends React.Component {
         'Authorization': localStorage.getItem('serverest/userToken'),
       }
     };
-    axios
-    .post('https://serverest.dev/produtos',
-      {
-        nome: this.state.name,
-        preco: this.state.price,
-        descricao: this.state.description,
-        quantidade: this.state.quantity,
-        imagem: this.state.imagem,
-    }, config)
-      .then((response) => {
-        history.push('/admin/listarprodutos');
-      })
-      .catch(error => {
-        this.setState({errors: error.response.data });
-        const allErrors = Object.values(this.state.errors);
-        this.setState({msg_error: allErrors});
-      })
+
+     if (this.state.imagem == '' || null || undefined) {
+      axios
+      .post('https://serverest.dev/produtos',
+        {
+          nome: this.state.name,
+          preco: this.state.price,
+          descricao: this.state.description,
+          quantidade: this.state.quantity,
+      }, config)
+        .then((response) => {
+          history.push('/admin/listarprodutos');
+        })
+        .catch(error => {
+          this.setState({errors: error.response.data });
+          const allErrors = Object.values(this.state.errors);
+          this.setState({msg_error: allErrors});
+        })
+     } else {
+      axios
+      .post('https://serverest.dev/produtos',
+        {
+          nome: this.state.name,
+          preco: this.state.price,
+          descricao: this.state.description,
+          quantidade: this.state.quantity,
+          imagem: this.state.imagem
+      }, config)
+        .then((response) => {
+          history.push('/admin/listarprodutos');
+        })
+        .catch(error => {
+          this.setState({errors: error.response.data });
+          const allErrors = Object.values(this.state.errors);
+          this.setState({msg_error: allErrors});
+        })
+     }
     this.setState(estadoInicial);
   }
 
