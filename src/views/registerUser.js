@@ -28,7 +28,7 @@ class RegisterUser extends React.Component {
   submitHandler = e => {
     e.preventDefault();
     axios
-      .post('https://serverest.dev/usuarios', {
+      .post(`${process.env.URL}/usuarios`, {
         nome: this.state.nome,
         email: this.state.email,
         password: this.state.password,

@@ -3,7 +3,7 @@ import history from './history';
 
 export function validateLogin(emaill) {
   axios
-    .get('https://serverest.dev/usuarios')
+    .get(`${process.env.URL}/usuarios`)
     .then((response) => {
       const { usuarios } = response.data;
       usuarios.forEach((element) => {
@@ -26,7 +26,7 @@ export function validateToken() {
 
 export function login(email, password) {
   axios
-    .post('https://serverest.dev/login', {
+    .post(`${process.env.URL}/login`, {
       email: email,
       password: password,
     })

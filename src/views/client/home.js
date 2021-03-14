@@ -34,7 +34,7 @@ class Home extends React.Component {
     };
 
     axios
-      .get('https://serverest.dev/produtos', config)
+      .get(`${process.env.URL}/produtos`, config)
       .then((response) => {
         const produtos = response.data;
         this.setState({ products: produtos.produtos });
