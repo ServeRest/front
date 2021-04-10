@@ -6,6 +6,7 @@ import { BsArrowDown, BsArrowUp} from "react-icons/bs";
 import ShoppingCartButton from '../../component/cartButton';
 import { validateToken } from '../../services/validateUser';
 import '../../App.css';
+import imagemSemFoto from '../../imagens/semimagem.jpeg'
 
 class Home extends React.Component {
   constructor(props) {
@@ -21,6 +22,16 @@ class Home extends React.Component {
     localStorage.setItem('serverest/precoProduto', preco);
     localStorage.setItem('serverest/quantidadeProduto', quantidade);
     localStorage.setItem('serverest/descricaoProduto', descricao);
+  }
+
+  validarImagem = (imagem) =>  {
+    if (imagem === 0 || imagem === null || imagem === undefined) {
+      console.log(imagem)
+      return imagemSemFoto 
+    } else {
+      console.log(imagem)
+      return imagem
+    }  
   }
 
   componentDidMount() {
@@ -47,9 +58,9 @@ class Home extends React.Component {
       return (
         <div className="card col-3">
           <div className="card-body" key={ product._id }>
-            <img className="image" src={product.imagem }/>
+            <img className="imagem" src={ this.validarImagem(product.image) }/>
+            <br />
             <h5 className="card-title negrito">{ product.nome }</h5>
-            <br></br>
             <h6 className="card-subtitle mb-2 text-muted negrito">Preço: </h6>
             <h6 className="card-subtitle mb-2 text-muted">$ { product.preco }</h6>
             <br></br>

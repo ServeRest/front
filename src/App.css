@@ -17,6 +17,13 @@
   height: 50;
 }
 
+.card-body img {
+  padding-top: 10px;
+  height: 150px;
+  text-align: center;
+  transition: padding 300ms ease;
+}
+
 .negrito {
   font-weight: bolder;
  }
