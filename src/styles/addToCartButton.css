@@ -1,0 +1,7 @@
+button {
+  background-color: whitesmoke;
+  box-shadow: 0px 1px 0px 1px rgb(221, 221, 221);
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: 5px;
+  padding: 3px;
+}
