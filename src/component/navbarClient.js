@@ -20,11 +20,11 @@ export default function navbarClient() {
       <img className="imagem" src={ logo1} width="100" height="65"/>
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
           <li className="nav-item">
-            <ButtonLink dataTestId="home" text="Home" route="/admin/home" />
+            <ButtonLink dataTestId="home" text="Home" route="/home" />
           </li>
         </ul>
         <form onClick={ submitHandler }>
-          <button class=" my-2 my-sm-0 btn btn-info" type="button">Logout</button>
+          <button className=" my-2 my-sm-0 btn btn-info" type="button">Logout</button>
         </form>
       </div>
     </nav>
