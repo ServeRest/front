@@ -12,7 +12,6 @@ import ShowProducts from './views/admin/showProducts';
 import Login from './views/login';
 import ProductDetail from './views/client/productDetail';
 import 'bootswatch/dist/minty/bootstrap.min.css';
-import './App.css';
 
 function App() {
   return (

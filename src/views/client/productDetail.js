@@ -5,7 +5,6 @@ import SearchBox from '../../component/searchBox';
 import { BsArrowDown, BsArrowUp} from "react-icons/bs";
 import ShoppingCartButton from '../../component/cartButton';
 import { validateToken } from '../../services/validateUser';
-import '../../App.css';
 import imagemSemFoto from '../../imagens/semimagem.jpeg'
 
 class Home extends React.Component {

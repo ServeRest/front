@@ -5,7 +5,7 @@ import SearchBox from '../../component/searchBox';
 import { BsArrowDown, BsArrowUp} from "react-icons/bs";
 import ShoppingCartButton from '../../component/cartButton';
 import { validateToken } from '../../services/validateUser';
-import '../../App.css';
+import '../../styles/homeClient.css';
 import imagemSemFoto from '../../imagens/semimagem.jpeg'
 
 class Home extends React.Component {
@@ -84,24 +84,6 @@ class Home extends React.Component {
           <div className="row col-12">
           <div className="col-2"></div>
             <SearchBox />
-            <div className="col-4">
-              <form className="form-control-lg">
-                <button
-                  type="button"
-                  className="btn btn-info mx-2 my-2 my-sm-0"
-                  onClick={() => this.searchProductsSorted('price_asc')}
-                >
-                  Menor Preço <BsArrowDown />
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-info mx-2 my-2 my-sm-0"
-                  /* onClick={() => this.searchProductsSorted('price_desc')} */
-                >
-                  Maior Preço <BsArrowUp />
-                </button>
-              </form>
-            </div>
           </div>
           <hr className="my-4" />
           <h4>Produtos</h4>
