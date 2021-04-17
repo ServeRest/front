@@ -1,0 +1,28 @@
+  .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #603985 !important;
+  }
+  .espacamento {
+    grid-gap: 10px 10px;
+    padding-left: 22rem;
+  }
+
+  .btn.btn-link{
+      color: #603985 !important;
+  }
+  
+  .login-page {
+    width: 360px;
+    padding: 10% 0 0;
+    margin: auto;
+  }
+  
+  body {
+    background: #f6f6f6; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #f9faf9, #603985);
+    background: -moz-linear-gradient(right, #f9faf9, #603985);
+    background: -o-linear-gradient(right, #f9faf9, #603985);
+    background: linear-gradient(to left, #f9faf9, #603985);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;      
+  }

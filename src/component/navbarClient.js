@@ -1,6 +1,8 @@
 import React from 'react';
 import ButtonLink from './buttonLink';
 import history from '../services/history';
+import '../styles/navbar.css';
+import logo1 from '../imagens/serverestlogo1branco.png'
 
 export default function navbarClient() {
 
@@ -15,7 +17,7 @@ export default function navbarClient() {
         <span className="navbar-toggler-icon" />
       </button>
       <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a className="navbar-brand text-light" href="#">ServeRest</a>
+      <img className="imagem" src={ logo1} width="100" height="65"/>
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
           <li className="nav-item">
             <ButtonLink dataTestId="home" text="Home" route="/admin/home" />

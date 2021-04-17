@@ -4,6 +4,8 @@ import 'bootswatch/dist/minty/bootstrap.min.css';
 import ErrorAlert from '../component/errorAlert'
 import LinkButton from '../component/linkButton';
 import { validateLogin, login } from '../services/validateUser';
+import logo1 from '../imagens/serverestlogo1.png'
+import '../styles/registerUser.css';
 
 const estadoInicial = { nome: '', email: '', password: '', administrador: 'false'}
 
@@ -60,14 +62,13 @@ class RegisterUser extends React.Component {
   render() {
     const { nome, email, password, administrador } = this.state;
     return (
-      <div className="login-page">
+      <div className="register-page">
         { this.state.msg_error.map((item, index)=> {
           return <ErrorAlert name={ item } key={index} display={ this.state.display }></ErrorAlert>;
         }) }
         <form onSubmit={ this.submitHandler }>
            <div className="form">
-           <h1 className="text-success">ServeRest</h1>
-          <br></br>
+           <img className="imagem" src={ logo1 } width="200" height="200" />
           <h2 className="font-robot">Cadastro </h2>
             <input
               type="text"

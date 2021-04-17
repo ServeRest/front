@@ -4,6 +4,9 @@ import 'bootswatch/dist/minty/bootstrap.min.css';
 import ErrorAlert from '../component/errorAlert';
 import { validateLogin } from '../services/validateUser';
 import LinkButton from '../component/linkButton';
+import logo1 from '../imagens/serverestlogo1.png'
+import '../styles/login.css';
+
 const estadoInicial = { email: '', password: '' }
 
 class Login extends React.Component {
@@ -53,8 +56,7 @@ class Login extends React.Component {
         })}
         <form onSubmit={ this.submitHandler }>
           <div className="form">
-          <h1 className="text-success">ServeRest</h1>
-          <br></br>
+          <img className="imagem" src={ logo1 } width="200" height="200" />
           <h2 className="font-robot">Login</h2>
             <input
               type="email"
