@@ -79,7 +79,7 @@ class CardList extends React.Component {
             <div className="col-8">
               <input
                 className="form-control my-5 mx-3 my-sm-0"
-                data-testid="query-input"
+                data-testid="pesquisar"
                 type="search"
                 placeholder="Pesquisar Produtos"
                 aria-label="Search"
@@ -91,7 +91,7 @@ class CardList extends React.Component {
               <button
                 className="btn btn-primary my-2 my-sm-0"
                 type="button"
-                data-testid="query-button"
+                data-testid="botaoPesquisar"
                 onClick={ this.handleClick }
               >
                 Pesquisar  <BsSearch />

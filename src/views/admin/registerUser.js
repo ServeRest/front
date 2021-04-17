@@ -76,6 +76,7 @@ class RegisterUsers extends React.Component {
                   type="text"
                   className="form-control"
                   placeholder="Digite seu nome"
+                  data-testid="nome"
                   name="name" value={ name }
                   onChange={ this.changeHandler }>
                 </input>
@@ -92,6 +93,7 @@ class RegisterUsers extends React.Component {
                   type="email"
                   className="form-control"
                   placeholder="Digite seu email"
+                  data-testid="email"
                   name="email" value={ email }
                   onChange={ this.changeHandler }>
                 </input>
@@ -108,6 +110,7 @@ class RegisterUsers extends React.Component {
                   type="password"
                   className="form-control"
                   placeholder="Digite sua senha"
+                  data-testid="senha"
                   name="password" value={ password }
                   onChange={ this.changeHandler }>
                 </input>
@@ -125,6 +128,7 @@ class RegisterUsers extends React.Component {
                       type="checkbox"
                       value={ administrador }
                       disabled=""
+                      data-testid="checkbox"
                       onChange={ this.handleInputChange }>
                     </input>
                     Cadastrar como Administrador
@@ -139,7 +143,8 @@ class RegisterUsers extends React.Component {
             <div className="col-md-4">
               <div className="form-group">
                 <button 
-                  type="submit" 
+                  type="submit"
+                  data-testid="cadastrarUsuario"
                   className="btn btn-primary">
                     Cadastrar
                 </button>

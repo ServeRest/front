@@ -49,7 +49,7 @@ class ShoppingCart extends React.Component {
           <Navbar />
           <div className="jumbotron">
             <Link to="/home">
-              <button className="btn btn-primary">Página Inicial</button>
+              <button data-testid="paginaInicial" className="btn btn-primary">Página Inicial</button>
             </Link>
             <h1>Lista de Compras</h1>
             <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>
@@ -62,13 +62,14 @@ class ShoppingCart extends React.Component {
           <div>
             <div className="jumbotron">
               <Link to="/home">
-              <button className="btn btn-primary">Página Inicial</button>
+              <button data-testid="paginaInicial" className="btn btn-primary">Página Inicial</button>
               </Link>
               <h1>Lista de Compras</h1>
               <Link to="/carrinho">
                 <button
                   data-testid="checkout-products"
                   type="button"
+                  data-testid="adicionar carrinho"
                   className="btn btn-primary"
                 >
                   Adicionar no carrinho
@@ -77,6 +78,7 @@ class ShoppingCart extends React.Component {
               <button
                 type="button"
                 className="btn btn-primary"
+                data-testid="limparLista"
                 onClick={ () => { Cart.removeAll(); this.forceUpdate(); } }
               >
                 Limpar Lista

@@ -67,7 +67,7 @@ class ProductDetails extends React.Component {
                 <div>
                   <LinkButton 
                     className="card-link" 
-                    dataTestId="detalhe_produto" 
+                    dataTestId="voltarHome" 
                     text="Voltar" 
                     route="/home">
                   </LinkButton>

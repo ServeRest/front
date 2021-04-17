@@ -24,7 +24,7 @@ export default function navbarClient() {
           </li>
         </ul>
         <form onClick={ submitHandler }>
-          <button className=" my-2 my-sm-0 btn btn-info" type="button">Logout</button>
+          <button data-testid="logout" className=" my-2 my-sm-0 btn btn-info" type="button">Logout</button>
         </form>
       </div>
     </nav>
