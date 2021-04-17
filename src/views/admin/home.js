@@ -38,7 +38,7 @@ class Home extends React.Component {
                 <div className="card-body">
                   <h5 className="card-title">Cadastrar Usuários</h5>
                   <p className="card-text">Funcionalidade de cadastro de usuários para ter acesso ao ecommerce.</p>
-                  <a className="btn btn-primary" onClick={ () => redirectPage('/admin/cadastrarusuarios') }>Cadastrar</a>
+                  <a data-testid="cadastrarUsuarios" className="btn btn-primary" onClick={ () => redirectPage('/admin/cadastrarusuarios') }>Cadastrar</a>
                 </div>
               </div>
             </div>
@@ -47,7 +47,7 @@ class Home extends React.Component {
                 <div className="card-body">
                   <h5 className="card-title">Listar Usuários</h5>
                   <p className="card-text">Funcionalidade de listagem de usuários que estão cadastrados.</p>
-                  <a className="btn btn-primary" onClick={ () => redirectPage('/admin/listarusuarios') }>Listar</a>
+                  <a data-testid="listarUsuarios" className="btn btn-primary" onClick={ () => redirectPage('/admin/listarusuarios') }>Listar</a>
                 </div>
               </div>
             </div>
@@ -56,7 +56,7 @@ class Home extends React.Component {
                 <div className="card-body">
                   <h5 className="card-title">Cadastrar Produtos</h5>
                   <p className="card-text">Funcionalidade de cadastro de produtos para ser utilizado no ecommerce.</p>
-                  <a className="btn btn-primary" onClick={ () => redirectPage('/admin/cadastrarprodutos') }>Cadastrar</a>
+                  <a data-testid="cadastrarProdutos" className="btn btn-primary" onClick={ () => redirectPage('/admin/cadastrarprodutos') }>Cadastrar</a>
                 </div>
               </div>
             </div>
@@ -65,7 +65,7 @@ class Home extends React.Component {
                 <div className="card-body">
                   <h5 className="card-title">Listar Produtos</h5>
                   <p className="card-text">Funcionalidade de listagem de produtos que estão cadastrados.</p>
-                  <a className="btn btn-primary" onClick={ () => redirectPage('/admin/listarprodutos') }>Listar</a>
+                  <a data-testid="listarProdutos" className="btn btn-primary" onClick={ () => redirectPage('/admin/listarprodutos') }>Listar</a>
                 </div>
               </div>
             </div>
@@ -74,7 +74,7 @@ class Home extends React.Component {
                 <div className="card-body">
                   <h5 className="card-title">Relatórios</h5>
                   <p className="card-text">Funcionalidade de relatórios gerais do sistema de ecommerce.</p>
-                  <a className="btn btn-primary" onClick={ () => redirectPage('/admin/relatorios') }>Ver</a>
+                  <a data-testid="relatorios" className="btn btn-primary" onClick={ () => redirectPage('/admin/relatorios') }>Ver</a>
                 </div>
               </div>
             </div>

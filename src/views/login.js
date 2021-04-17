@@ -151,16 +151,18 @@ class Login extends React.Component {
               className="form-control"
               placeholder="Digite seu email"         
               name="email" value={ email }
+              data-testid="email"
               onChange={this.changeHandler}></input>
             <br></br>
             <input
               type="password"
               className="form-control"
               placeholder="Digite sua senha"
+              data-testid="senha"
               name="password" value={ password }
               onChange={this.changeHandler}></input>
             <br></br>
-            <button type="submit" className="btn btn-primary">Entrar</button>
+            <button data-testid="entrar" type="submit" className="btn btn-primary">Entrar</button>
             <p 
               className="message">Não é cadastrado?
               <LinkButton dataTestId="cadastrar" text="Cadastre-se" route="/cadastrarusuarios"></LinkButton>

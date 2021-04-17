@@ -99,6 +99,7 @@ class RegisterProducts extends React.Component {
                   type="text"
                   className="form-control"
                   placeholder="Digite o nome"
+                  data-testid="nome"
                   name="name" value={ name }
                   onChange={ this.changeHandler }>
                 </input>
@@ -115,6 +116,7 @@ class RegisterProducts extends React.Component {
                   className="form-control"
                   placeholder="Digite o preço"
                   name="price" value={ price }
+                  data-testid="preco"
                   onChange={ this.changeHandler }>
                 </input>
               </div>
@@ -135,6 +137,7 @@ class RegisterProducts extends React.Component {
                   placeholder="Digite a descrição"
                   name="description" value={ description }
                   onChange={ this.changeHandler }
+                  data-testid="descricao"
                   id="exampleFormControlTextarea1"
                   rows="3">
                 </textarea>
@@ -151,6 +154,7 @@ class RegisterProducts extends React.Component {
                   type="number"
                   className="form-control"
                   name="quantity" value={ quantity }
+                  data-testid="quantidade"
                   onChange={ this.changeHandler }>
                 </input>
               </div>
@@ -166,6 +170,7 @@ class RegisterProducts extends React.Component {
                 class="form-control-file"
                 name="imagem" value={ imagem }
                 onChange={ this.changeHandler } 
+                data-testid="imagem"
                 id="exampleFormControlFile1">
               </input>
             </div>
@@ -176,7 +181,7 @@ class RegisterProducts extends React.Component {
             <div className="col-md-4"></div>
             <div className="col-md-4">
               <div className="form-group">
-              <button type="submit" className="btn btn-primary">Cadastrar</button>
+              <button data-testid="cadastarProdutos" type="submit" className="btn btn-primary">Cadastrar</button>
               </div>
             </div>
             <div className="col-md-4"></div>

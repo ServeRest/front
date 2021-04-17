@@ -35,11 +35,11 @@ export default function NavbarAdmin() {
             <ButtonLink dataTestId="listar-produtos" text="Listar Produtos" route="/admin/listarprodutos" />
           </li>
           <li className="nav-item">
-            <ButtonLink dataTestId="relatorios" text="Relatórios" route="/admin/relatorios" />
+            <ButtonLink dataTestId="link-relatorios" text="Relatórios" route="/admin/relatorios" />
           </li>
         </ul>
         <form onClick={ submitHandler }>
-          <button class=" my-2 my-sm-0 btn btn-info" type="button">Logout</button>
+          <button data-testid="logout" class=" my-2 my-sm-0 btn btn-info" type="button">Logout</button>
         </form>
       </div>
     </nav>

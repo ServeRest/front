@@ -14,7 +14,7 @@ class AddToCartButton extends React.Component {
       >
       <button
         type="button"
-        data-testid="product-add-to-cart"
+        data-testid="adicionarNaLista"
         className="btn btn-primary"
         onClick={ () => { Cart.addItem(product); } }
       >

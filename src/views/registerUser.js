@@ -74,6 +74,7 @@ class RegisterUser extends React.Component {
               type="text"
               className="form-control"
               placeholder="Digite seu nome"
+              data-testid="nome"
               name="nome" value={ nome }
               onChange={this.changeHandler}></input>
             <br></br>
@@ -81,12 +82,14 @@ class RegisterUser extends React.Component {
               className="form-control"
               placeholder="Digite seu email"
               name="email" value={ email }
+              data-testid="email"
               onChange={this.changeHandler}></input>
             <br></br>
             <input type="password"
               className="form-control"
               placeholder="Digite sua senha"
               name="password" value={ password }
+              data-testid="senha"
               onChange={this.changeHandler}></input>
             <br></br>
             <div className="form-check disabled">
@@ -95,16 +98,17 @@ class RegisterUser extends React.Component {
                   className="form-check-input"
                   type="checkbox" value={ administrador }
                   disabled=""
+                  data-testid="checkbox"
                   onChange={this.handleInputChange}></input>
                   Cadastrar como Administrador
               </label>
             </div>
             <br></br>
-            <button type="submit" className="btn btn-primary">Entrar</button>
+            <button data-testid="entrar" type="submit" className="btn btn-primary">Entrar</button>
             <br></br>
             <p 
               className="message">Já é cadastrado?
-              <LinkButton dataTestId="login" text="Entrar" route="/login"></LinkButton>
+              <LinkButton dataTestId="entrar" text="Entrar" route="/login"></LinkButton>
             </p>
           </div>
         </form>
