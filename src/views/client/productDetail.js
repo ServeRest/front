@@ -54,7 +54,8 @@ class ProductDetails extends React.Component {
                       <div className="especificacoes">
                         <h2 className="title">Detalhes</h2>
                         <h4 className="title">{ `R$: ${product.preco}` }</h4>
-                        <h4 className="title">{ `Quantidade: ${product.descricao}` }</h4>
+                        {console.log(product)}
+                        <h4 className="title">{ `Quantidade: ${product.quantidade}` }</h4>
                         <h4 className="title">{ `Descrição: ${product.descricao}` }</h4>
                       </div>
                     </div>
