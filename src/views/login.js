@@ -139,13 +139,14 @@ class Login extends React.Component {
     const { email, password } = this.state;
     return (
       <div className="login-page">
-        { this.state.msg_error.map((item, index) => {
-          return <ErrorAlert name={ item } key={ index } display={ this.state.display }></ErrorAlert>;
-        })}
         <form onSubmit={ this.submitHandler }>
           <div className="form">
           <img className="imagem" src={ logo1 } width="200" height="200" />
           <h2 className="font-robot">Login</h2>
+          <br />
+            { this.state.msg_error.map((item, index) => {
+              return <ErrorAlert name={ item } key={ index } display={ this.state.display }></ErrorAlert>;
+            })}
             <input
               type="email"
               className="form-control"
@@ -161,7 +162,7 @@ class Login extends React.Component {
               data-testid="senha"
               name="password" value={ password }
               onChange={this.changeHandler}></input>
-            <br></br>
+            <br />
             <button data-testid="entrar" type="submit" className="btn btn-primary">Entrar</button>
             <p 
               className="message">Não é cadastrado?
