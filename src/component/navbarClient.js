@@ -22,6 +22,12 @@ export default function navbarClient() {
           <li className="nav-item">
             <ButtonLink dataTestId="home" text="Home" route="/home" />
           </li>
+          <li className="nav-item">
+          <ButtonLink dataTestId="lista-de-compras" text="Lista de Compras" route="/minhaListaDeProdutos" />
+          </li>
+          <li className="nav-item">
+          <ButtonLink dataTestId="carrinho" text="Carrinho" route="/carrinho" />
+          </li>
         </ul>
         <form onClick={ submitHandler }>
           <button data-testid="logout" className=" my-2 my-sm-0 btn btn-info" type="button">Logout</button>

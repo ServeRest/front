@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import 'bootswatch/dist/minty/bootstrap.min.css';
+import SuccessAlert from '../component/alert'
 import ErrorAlert from '../component/errorAlert'
 import LinkButton from '../component/linkButton';
 import { validateLogin, login } from '../services/validateUser';
@@ -19,7 +20,9 @@ class RegisterUser extends React.Component {
       password: '',
       administrador: 'false',
       errors: '',
+      success: '',
       msg_error: [],
+      msg_success: [],
     }
   }
 
@@ -42,8 +45,15 @@ class RegisterUser extends React.Component {
         const emailUser = localStorage.getItem('serverest/userEmail');
         const passwordUser = localStorage.getItem('serverest/userPassword');
         const tokenUser = localStorage.getItem('serverest/userToken');
+        this.setState({ success: response.data.message });
+        this.setState({ msg_success: this.state.success });
+        this.setState({ success: response.data.message });
+        this.setState(estadoInicial);
         login(emailUser, passwordUser);
-        validateLogin(emailUser);
+        setTimeout(() => {
+          validateLogin(emailUser);
+        }, 3000);
+       
       })
       .catch(error => {
         this.setState({errors: error.response.data });
@@ -60,13 +70,14 @@ class RegisterUser extends React.Component {
   }
 
   render() {
-    const { nome, email, password, administrador } = this.state;
+    const { nome, email, password, administrador, success, msg_success } = this.state;
     return (
       <div className="register-page">
         <form onSubmit={ this.submitHandler }>
            <div className="form">
            <img className="imagem" src={ logo1 } width="200" height="200" />
           <h2 className="font-robot">Cadastro </h2>
+          { msg_success !== "Cadastro realizado com sucesso" ? null : <SuccessAlert name={ msg_success } display={ this.state.display }></SuccessAlert>}
           { this.state.msg_error.map((item, index)=> {
             return <ErrorAlert name={ item } key={index} display={ this.state.display }></ErrorAlert>;
           }) }
@@ -104,7 +115,7 @@ class RegisterUser extends React.Component {
               </label>
             </div>
             <br />
-            <button data-testid="entrar" type="submit" className="btn btn-primary">Entrar</button>
+            <button data-testid="cadastrar" type="submit" className="btn btn-primary">Cadastrar</button>
             <br></br>
             <p 
               className="message">Já é cadastrado?
