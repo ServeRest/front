@@ -118,11 +118,11 @@ class ShoppingCart extends React.Component {
                             <div className="col-3"></div>
                               <button
                                 type="button"
-                                data-testid="product-increase-quantity"
                                 className="btn btn-primary"
-                                onClick={ () => { this.addProduct(element); this.forceUpdate(); } }
+                                data-testid="product-decrease-quantity"
+                                onClick={ () => { this.removeProduct(element); this.forceUpdate(); } }
                               >
-                                +
+                                -
                               </button>
                               <div className="col-3">
                                 <p>
@@ -131,11 +131,11 @@ class ShoppingCart extends React.Component {
                               </div>
                               <button
                                 type="button"
+                                data-testid="product-increase-quantity"
                                 className="btn btn-primary"
-                                data-testid="product-decrease-quantity"
-                                onClick={ () => { this.removeProduct(element); this.forceUpdate(); } }
+                                onClick={ () => { this.addProduct(element); this.forceUpdate(); } }
                               >
-                                -
+                                +
                               </button>
                           </div>
                       </div>
