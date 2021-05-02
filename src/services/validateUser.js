@@ -27,8 +27,8 @@ export function validateToken() {
 export function login(email, password) {
   axios
     .post('https://serverest.dev/login', {
-      email: email,
-      password: password,
+      email,
+      password,
     })
     .then((response) => {
       localStorage.setItem('serverest/userToken', response.data.authorization);

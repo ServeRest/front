@@ -1,0 +1,65 @@
+name: Continuous Delivery
+
+on:
+  workflow_dispatch:
+  push:
+
+env:
+  PACT_BROKER_BASE_URL: https://paulogoncalves.pactflow.io
+  PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
+  COMMIT: ${{ github.sha }}
+  BRANCH: ${{ github.ref }}
+
+jobs:
+  test-contract:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Project checkout
+      uses: actions/checkout@v2
+    - name: Node.js Setup
+      uses: actions/setup-node@v2
+    - name: Installation of Node.js dependencies
+      run: npm ci
+    - name: Run contract test
+      run: npm run test:contract
+    - name: Publish contract test result
+      run: npm run test:contract:publish
+
+  # Runs on branches as well, so we know the status of our PRs
+  can-i-deploy-to-production:
+    runs-on: ubuntu-18.04
+    needs: test-contract
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install pact brocker
+      run: |
+        curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.88.51/pact-1.88.51-linux-x86_64.tar.gz
+        tar xzf pact-1.88.51-linux-x86_64.tar.gz
+    - name: Can I deploy to production?
+      run: |
+        pact/bin/pact-broker can-i-deploy \
+        --pacticipant Front \
+        --version ${{ github.sha }} \
+        --to production
+
+  # Only deploy from main
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: can-i-deploy-to-production
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy
+      run: |
+        echo "\n========== STAGE: deploy ==========\n"
+        echo "Deploying to prod"
+    - name: Install pact brocker
+      run: |
+        curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.88.51/pact-1.88.51-linux-x86_64.tar.gz
+        tar xzf pact-1.88.51-linux-x86_64.tar.gz
+    - name: Tag the pact contract with 'production' tag
+      run: |
+        pact/bin/pact-broker create-version-tag \
+        --pacticipant Front \
+        --version ${{ github.sha }} \
+        --tag production
