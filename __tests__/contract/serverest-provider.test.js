@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-undef */
 const axios = require('axios');
+const { Matchers } = require('@pact-foundation/pact');
 
 describe('Contrato da rota de usuários', () => {
   const usuario = {
@@ -33,13 +34,13 @@ describe('Contrato da rota de usuários', () => {
             'Content-Type': 'application/json; charset=utf-8',
             'Access-Control-Allow-Origin': '*',
           },
-          body: {
+          body: Matchers.like({
             nome: usuario.nome,
             email: usuario.email,
             password: usuario.password,
             administrador: usuario.administrador,
             _id: usuario._id,
-          },
+          }),
         },
       };
       return provider.addInteraction(interaction);
