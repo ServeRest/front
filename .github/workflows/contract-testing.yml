@@ -24,18 +24,6 @@ jobs:
       run: npm run test:contract
     - name: Publish contract test result
       run: npm run test:contract:publish
-    - uses: EthanSK/git-branch-name-action@v1 # env.GIT_BRANCH_NAME
-    - name: Run contract test on provider side
-      uses: peter-evans/repository-dispatch@v1
-      with:
-        token: ${{ secrets.DISPATCH_ACCESS_TOKEN }}
-        repository: serverest/serverest
-        event-type: trigger-by-consumer
-        client-payload: '{"branch": "${{ env.GIT_BRANCH_NAME }}", "repository": "${{ github.repository }}", "ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
-    - name: Sleep for 3 minute # aguardar fim do teste de contrato no lado do provider
-      uses: jakejarvis/wait-action@master
-      with:
-        time: '3m'
 
   # Runs on branches as well, so we know the status of our PRs
   can-i-deploy-to-production:
@@ -52,7 +40,9 @@ jobs:
         pact/bin/pact-broker can-i-deploy \
         --pacticipant Front \
         --version ${{ github.sha }} \
-        --to production
+        --retry-while-unknown 30 \
+        --retry-interval 10 \
+        --to trunk
 
   # Only deploy from main
   deploy:
