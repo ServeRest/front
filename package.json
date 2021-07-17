@@ -25,7 +25,6 @@
     "eslint-plugin-jsx-a11y": "^6.3.0",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^2.3.0",
-    "is-ci": "^2.0.0",
     "jest": "^24.9.0",
     "mocha": "^7.0.1",
     "typescript": ">=2.8.0"
@@ -36,8 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json .",
-    "test:contract": "jest --runInBand --setupFiles ./__tests__/helpers/pact.setup.js --setupTestFrameworkScriptFile=./__tests__/helpers/pact.wrapper.js contract",
-    "test:contract:publish": "node ./__tests__/helpers/pact.publish.js"
+    "test:contract": "jest --runInBand --setupFiles ./__tests__/helpers/pact.setup.js --setupTestFrameworkScriptFile=./__tests__/helpers/pact.wrapper.js contract"
   },
   "eslintConfig": {
     "extends": "react-app"
