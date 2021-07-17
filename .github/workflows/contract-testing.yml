@@ -20,8 +20,19 @@ jobs:
       run: npm ci
     - name: Run contract test
       run: npm run test:contract
+    - run: docker pull pactfoundation/pact-cli:latest
     - name: Publish contract test result
-      run: npm run test:contract:publish
+      run: |
+        docker run --rm \
+          -w ${PWD} \
+          -v ${PWD}:${PWD} \
+          -e PACT_BROKER_BASE_URL \
+          -e PACT_BROKER_TOKEN \
+          pactfoundation/pact-cli \
+          publish \
+          ${PWD}/__tests__/contract/pacts \
+          --consumer-app-version ${{ github.sha }} \
+          --tag-with-git-branch
 
   # Runs on branches as well, so we know the status of our PRs
   can-i-deploy-to-production:
