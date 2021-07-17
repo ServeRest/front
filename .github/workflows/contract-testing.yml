@@ -7,8 +7,6 @@ on:
 env:
   PACT_BROKER_BASE_URL: https://paulogoncalves.pactflow.io
   PACT_BROKER_TOKEN: ${{ secrets.PACT_BROKER_TOKEN }}
-  COMMIT: ${{ github.sha }}
-  BRANCH: ${{ github.ref }}
 
 jobs:
   test-contract:
@@ -31,18 +29,19 @@ jobs:
     needs: test-contract
     steps:
     - uses: actions/checkout@v2
-    - name: Install pact brocker
-      run: |
-        curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.88.51/pact-1.88.51-linux-x86_64.tar.gz
-        tar xzf pact-1.88.51-linux-x86_64.tar.gz
+    - run: docker pull pactfoundation/pact-cli:latest
     - name: Can I deploy to production?
       run: |
-        pact/bin/pact-broker can-i-deploy \
-        --pacticipant Front \
-        --version ${{ github.sha }} \
-        --retry-while-unknown 30 \
-        --retry-interval 10 \
-        --to trunk
+        docker run --rm \
+          -e PACT_BROKER_BASE_URL \
+          -e PACT_BROKER_TOKEN \
+          pactfoundation/pact-cli \
+          broker can-i-deploy \
+          --pacticipant Front \
+          --version ${{ github.sha }} \
+          --retry-while-unknown 30 \
+          --retry-interval 10 \
+          --to production
 
   # Only deploy from main
   deploy:
@@ -55,13 +54,14 @@ jobs:
       run: |
         echo "\n========== STAGE: deploy ==========\n"
         echo "Deploying to prod"
-    - name: Install pact brocker
-      run: |
-        curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v1.88.51/pact-1.88.51-linux-x86_64.tar.gz
-        tar xzf pact-1.88.51-linux-x86_64.tar.gz
+    - run: docker pull pactfoundation/pact-cli:latest
     - name: Tag the pact contract with 'production' tag
       run: |
-        pact/bin/pact-broker create-version-tag \
-        --pacticipant Front \
-        --version ${{ github.sha }} \
-        --tag production
+        docker run --rm \
+          -e PACT_BROKER_BASE_URL \
+          -e PACT_BROKER_TOKEN \
+          pactfoundation/pact-cli \
+          broker create-version-tag \
+          --pacticipant Front \
+          --version ${{ github.sha }} \
+          --tag production
