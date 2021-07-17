@@ -1,29 +1,36 @@
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable no-undef */
 const axios = require('axios');
-const { Matchers } = require('@pact-foundation/pact');
+const { Matchers, Pact } = require('@pact-foundation/pact');
 
-describe('Contrato da rota de usuários', () => {
-  const usuario = {
-    nome: 'Fulano da Silva',
-    email: 'fulano@qa.com',
-    password: 'teste',
-    administrador: 'true',
-    _id: '0uxuPY0cbmQhpEz1',
-  };
+const port = 3001;
+const rotaLocalhost = `http://localhost:${port}`;
+const mockProvider = new Pact({
+  port,
+  consumer: 'Front',
+  provider: 'ServeRest - API Rest',
+});
 
-  const rotaLocalhost = `http://localhost:${port}`;
+describe('API Pact test - Integration between \'Front\' and \'ServeRest - API Rest\'', () => {
+  beforeAll(() => mockProvider.setup());
+  afterEach(() => mockProvider.verify());
+  afterAll(() => mockProvider.finalize());
 
-  afterEach(() => provider.verify());
+  describe('GET user by ID', () => {
+    it('Should return with sucess search with existing user', async () => {
+      const expectedUsuario = {
+        nome: 'Fulano da Silva',
+        email: 'fulano@qa.com',
+        password: 'teste',
+        administrador: 'true',
+        _id: '0uxuPY0cbmQhpEz1',
+      };
 
-  describe('GET Usuarios por ID', () => {
-    beforeEach(async () => {
-      const interaction = {
-        uponReceiving: 'a request for a specific user',
+      await mockProvider.addInteraction({
         state: 'i have a user',
+        uponReceiving: 'a request for a specific user',
         withRequest: {
           method: 'GET',
-          path: `/usuarios/${usuario._id}`,
+          path: `/usuarios/${expectedUsuario._id}`,
           headers: {
             Accept: 'application/json, text/plain, */*',
           },
@@ -34,22 +41,13 @@ describe('Contrato da rota de usuários', () => {
             'Content-Type': 'application/json; charset=utf-8',
             'Access-Control-Allow-Origin': '*',
           },
-          body: Matchers.like({
-            nome: usuario.nome,
-            email: usuario.email,
-            password: usuario.password,
-            administrador: usuario.administrador,
-            _id: usuario._id,
-          }),
+          body: Matchers.like(expectedUsuario),
         },
-      };
-      return provider.addInteraction(interaction);
-    });
+      });
 
-    it('When response finished, expect to return correct body, header and status', async () => {
-      const response = await axios.get(`${rotaLocalhost}/usuarios/${usuario._id}`);
+      const response = await axios.get(`${rotaLocalhost}/usuarios/${expectedUsuario._id}`);
       expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
-      expect(response.data).toEqual(usuario);
+      expect(response.data).toEqual(expectedUsuario);
       // eslint-disable-next-line no-magic-numbers
       expect(response.status).toEqual(200);
     });

@@ -35,7 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json .",
-    "test:contract": "jest --runInBand --setupFiles ./__tests__/helpers/pact.setup.js --setupTestFrameworkScriptFile=./__tests__/helpers/pact.wrapper.js contract"
+    "test:contract": "jest contract"
   },
   "eslintConfig": {
     "extends": "react-app"

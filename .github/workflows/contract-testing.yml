@@ -30,7 +30,7 @@ jobs:
           -e PACT_BROKER_TOKEN \
           pactfoundation/pact-cli \
           publish \
-          ${PWD}/__tests__/contract/pacts \
+          ${PWD}/pacts \
           --consumer-app-version ${{ github.sha }} \
           --tag-with-git-branch
 

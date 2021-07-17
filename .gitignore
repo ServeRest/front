@@ -24,4 +24,4 @@ yarn-error.log*
 
 # contract testing
 logs/
-__tests__/contract/pacts/
+pacts/
