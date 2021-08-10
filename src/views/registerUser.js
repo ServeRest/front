@@ -32,7 +32,7 @@ class RegisterUser extends React.Component {
 
   submitHandler = e => {
     e.preventDefault();
-    registerUser(this.state.name, this.state.email, this.state.password, this.state.administrador)
+    registerUser(this.state)
     .then((response) => {
       localStorage.setItem('serverest/userEmail', this.state.email);
       localStorage.setItem('serverest/userPassword', this.state.password);

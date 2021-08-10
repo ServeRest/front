@@ -18,7 +18,7 @@ export async function getAllProducts() {
     })
 }
 
-export async function registerProduct(name, price, description, quantity) {
+export async function registerProduct(state) {
     const config = {
         headers: {
           'Accept': 'application/json',
@@ -29,16 +29,16 @@ export async function registerProduct(name, price, description, quantity) {
     return await axios
       .post(`${Utils.getBaseUrl()}/produtos`,
         {
-          nome: name,
-          preco: price,
-          descricao: description,
-          quantidade: quantity,
+          nome: state.name,
+          preco: state.price,
+          descricao: state.description,
+          quantidade: state.quantity,
       }, config)
       .then((response) => response)
       .catch((error) => error)
 }
 
-export async function registerProductWithImage(name, price, description, quantity, image) {
+export async function registerProductWithImage(state) {
     const config = {
         headers: {
           'Accept': 'application/json',
@@ -49,11 +49,11 @@ export async function registerProductWithImage(name, price, description, quantit
     return await axios
     .post(`${Utils.getBaseUrl()}/produtos`,
       {
-        nome: this.state.name,
-        preco: this.state.price,
-        descricao: this.state.description,
-        quantidade: this.state.quantity,
-        imagem: this.state.imagem
+        nome: state.name,
+        preco: state.price,
+        descricao: state.description,
+        quantidade: state.quantity,
+        imagem: state.imagem
     }, config)
 }
 
@@ -69,4 +69,10 @@ export async function deleteProductById(id) {
     return await axios.delete(`${Utils.getBaseUrl()}/produtos/${id}`, config)
     .then((response) => response)
     .catch((error) => error)
+}
+
+export async function getProductsFromCategoryAndQuery(query) {
+  return fetch(`${Utils.getBaseUrl()}/produtos?nome=${query}`)
+    .then((response) => response.json())
+    .then((data) => data);
 }
