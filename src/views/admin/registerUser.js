@@ -1,10 +1,10 @@
 import Navbar from '../../component/navbarAdmin'
 import React from 'react';
-import axios from 'axios';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import ErrorAlert from '../../component/errorAlert';
 import { validateToken } from '../../services/validateUser';
 import history from '../../services/history';
+import { registerUser } from '../../services/users';
 
 const estadoInicial = { nome: '', email: '', password: '', administrador: 'false' }
 
@@ -32,13 +32,7 @@ class RegisterUsers extends React.Component {
 
   submitHandler = e => {
     e.preventDefault();
-    axios
-      .post('https://serverest.dev/usuarios', {
-        nome: this.state.name,
-        email:this.state.email,
-        password: this.state.password,
-        administrador: this.state.administrador,
-       } )
+    registerUser(this.state.name, this.state.email, this.state.password, this.state.administrador)
       .then((response) => {
         history.push('/admin/listarusuarios');
       })
