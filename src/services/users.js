@@ -16,13 +16,13 @@ export async function getAllUsers() {
   .catch((error) => error)
 }
 
-export async function registerUser(name, email, password, administrador) {
+export async function registerUser(state) {
     return await axios
     .post(`${Utils.getBaseUrl()}/usuarios`, {
-      nome: name,
-      email:email,
-      password: password,
-      administrador: administrador,
+      nome: state.name,
+      email:state.email,
+      password: state.password,
+      administrador: state.administrador,
      })
      .then((respose) => respose)
      .catch((error) => error)
