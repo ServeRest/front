@@ -6,6 +6,7 @@
 // import LinkButton from '../component/linkButton';
 // import logo1 from '../imagens/serverestlogo1.png'
 // import '../styles/login.css';
+// import Utils from '../services/utils'
 
 // const estadoInicial = { email: '', password: '' }
 
@@ -29,7 +30,7 @@
 //   submitHandler = e => {
 //     e.preventDefault();
 //     axios
-//       .post('https://serverest.dev/login', {
+//       .post('${Utils.getBaseUrl()}/login', {
 //         email: this.state.email,
 //         password: this.state.password,
 //        })
@@ -87,13 +88,13 @@
 // export default Login;
 
 import React from 'react';
-import axios from 'axios';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import ErrorAlert from '../component/errorAlert';
 import { validateLogin } from '../services/validateUser';
 import LinkButton from '../component/linkButton';
 import logo1 from '../imagens/serverestlogo1.png'
 import '../styles/login.css';
+import { login } from '../services/login';
 
 const estadoInicial = { email: '', password: '' }
 
@@ -116,23 +117,19 @@ class Login extends React.Component {
 
   submitHandler = e => {
     e.preventDefault();
-    axios
-      .post('https://serverest.dev/login', {
-        email: this.state.email,
-        password: this.state.password,
-       })
-      .then((response) => {
-        localStorage.setItem('serverest/userEmail', this.state.email);
-        localStorage.setItem('serverest/userToken', response.data.authorization);
-        const emailStorage = localStorage.getItem('serverest/userEmail');
-        validateLogin(emailStorage);
-      })
-      .catch(error => {
-        this.setState({errors: error.response.data });
-        const allErrors = Object.values(this.state.errors);
-        this.setState({msg_error: allErrors});
-        this.setState(estadoInicial);
-      });
+    login(this.state.email, this.state.password)
+    .then((response) => {
+      localStorage.setItem('serverest/userEmail', this.state.email);
+      localStorage.setItem('serverest/userToken', response.data.authorization);
+      const emailStorage = localStorage.getItem('serverest/userEmail');
+      validateLogin(emailStorage);
+    })
+    .catch(error => {
+      this.setState({errors: error.response.data });
+      const allErrors = Object.values(this.state.errors);
+      this.setState({msg_error: allErrors});
+      this.setState(estadoInicial);
+    });
   }
 
   render() {

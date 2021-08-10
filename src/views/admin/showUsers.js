@@ -1,9 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import Navbar from '../../component/navbarAdmin';
 import { validateToken } from '../../services/validateUser';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import ErrorAlert from '../../component/errorAlert';
+import { deleteUser, getAllUsers } from '../../services/users';
 
 class ShowUsers extends React.Component {
   constructor(props) {
@@ -16,19 +16,11 @@ class ShowUsers extends React.Component {
 
   componentDidMount() {
     validateToken();
-    const config = {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        Accept: 'application/json',
-      },
-    };
-
-    axios
-      .get('https://serverest.dev/usuarios', config)
-      .then((response) => {
-        const usuarios = response.data;
-        this.setState({ persons: usuarios.usuarios });
-      });
+    getAllUsers()
+    .then((response) => {
+      const usuarios = response.data;
+      this.setState({ persons: usuarios.usuarios });
+    });
   }
 
   removeUser(id, email) {
@@ -36,8 +28,7 @@ class ShowUsers extends React.Component {
     if (email === emailStorage) {
       this.setState( { msg_error: ["Não é possível excluir o próprio usuário!"] } );
     } else {
-      const url = `https://serverest.dev/usuarios/${id}`;
-      axios.delete(url).then(res => { window.location.reload(); });
+      deleteUser(id).then(res => { window.location.reload(); });
     }
   }
 
