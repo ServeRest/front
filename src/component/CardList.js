@@ -1,12 +1,11 @@
 import React from 'react';
-import { getProductsFromCategoryAndQuery } from '../services/api';
 import Card from './Card';
 import Cart from '../services/cart';
 import NoSearching from './NoSearching';
 import Loading from './Loading';
 import { BsSearch } from "react-icons/bs";
 import { validateToken } from '../services/validateUser';
-import { getAllProducts } from '../services/products';
+import { getAllProducts, getProductsFromCategoryAndQuery } from '../services/products';
 
 class CardList extends React.Component {
   constructor() {
