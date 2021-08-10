@@ -4,8 +4,8 @@ import Utils from './utils';
 export async function login(email, password) {
     return await axios
     .post(`${Utils.getBaseUrl()}/login`, {
-    email: email,
-    password: password,
+    email,
+    password,
     })
     .then((respose) => respose)
     .catch((error) => error)
