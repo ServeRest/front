@@ -7,4 +7,6 @@ export async function login(email, password) {
             email,
             password,
         })
+        .then((respose) => respose)
+        .catch((error) => error)
 }
