@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import SuccessAlert from '../component/alert'
 import ErrorAlert from '../component/errorAlert'
