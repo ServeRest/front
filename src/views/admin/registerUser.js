@@ -32,7 +32,12 @@ class RegisterUsers extends React.Component {
 
   submitHandler = e => {
     e.preventDefault();
-    registerUser(this.state.name, this.state.email, this.state.password, this.state.administrador)
+    registerUser({
+        nome: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        administrador: this.state.administrador,
+      })
       .then((response) => {
         history.push('/admin/listarusuarios');
       })
