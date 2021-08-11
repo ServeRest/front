@@ -78,8 +78,8 @@ class RegisterUser extends React.Component {
            <img className="imagem" src={ logo1 } width="200" height="200" />
           <h2 className="font-robot">Cadastro </h2>
           { msg_success !== "Cadastro realizado com sucesso" ? null : <SuccessAlert name={ msg_success } display={ this.state.display }></SuccessAlert>}
-          { this.state.msg_error.map((item, index)=> {
-            return <ErrorAlert name={ item } key={index} display={ this.state.display }></ErrorAlert>;
+          { this.state.msg_error.map((item, index) => {
+            return <ErrorAlert name={ item } key={ index }></ErrorAlert>;
           }) }
             <input
               type="text"

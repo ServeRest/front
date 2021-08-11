@@ -63,7 +63,7 @@ class RegisterUsers extends React.Component {
         <Navbar></Navbar>
         <form className="jumbotron" onSubmit={ this.submitHandler }>
             { this.state.msg_error.map((item , index)=> {
-              return <ErrorAlert name={ item } key={ index } display={ this.state.display }></ErrorAlert>;
+              return <ErrorAlert name={ item } key={ index }></ErrorAlert>;
             }) }
           <h1>Cadastro de usuários</h1>
           <hr className="my-4"></hr>

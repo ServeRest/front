@@ -145,7 +145,7 @@ class Login extends React.Component {
           <h2 className="font-robot">Login</h2>
           <br />
             { this.state.msg_error.map((item, index) => {
-              return <ErrorAlert name={ item } key={ index } display={ this.state.display }></ErrorAlert>;
+              return <ErrorAlert name={ item } key={ index }></ErrorAlert>;
             })}
             <input
               type="email"
