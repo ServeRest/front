@@ -12,6 +12,10 @@ export async function getAllProducts() {
 
   return await axios
     .get(`${Utils.getBaseUrl()}/produtos`, config)
+    .then((response) => response)
+    .catch((error) => {
+        console.error(error.message);
+    })
 }
 
 export async function registerProduct({nome, preco, descricao, quantidade}) {
