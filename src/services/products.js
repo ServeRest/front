@@ -12,10 +12,6 @@ export async function getAllProducts() {
 
     return await axios
     .get(`${Utils.getBaseUrl()}/produtos`, config)
-    .then((response) => response)
-    .catch((error) => {
-        console.error(error.message);
-    })
 }
 
 export async function registerProduct({ nome, preco, descricao, quantidade }) {
@@ -34,8 +30,6 @@ export async function registerProduct({ nome, preco, descricao, quantidade }) {
           descricao,
           quantidade,
       }, config)
-      .then((response) => response)
-      .catch((error) => error)
 }
 
 export async function registerProductWithImage({ nome, preco, descricao, quantidade, imagem }) {
@@ -59,16 +53,14 @@ export async function registerProductWithImage({ nome, preco, descricao, quantid
 
 export async function deleteProductById(id) {
     const config = {
-    headers: {
-        'Access-Control-Allow-Origin': '*',
-        Accept: 'application/json',
-        Authorization: localStorage.getItem('serverest/userToken'),
-    },
+      headers: {
+          'Access-Control-Allow-Origin': '*',
+          Accept: 'application/json',
+          Authorization: localStorage.getItem('serverest/userToken'),
+      },
     }
 
     return await axios.delete(`${Utils.getBaseUrl()}/produtos/${id}`, config)
-    .then((response) => response)
-    .catch((error) => error)
 }
 
 export async function getProductsFromCategoryAndQuery(query) {
