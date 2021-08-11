@@ -12,8 +12,6 @@ export async function getAllUsers() {
 
   return await axios
   .get(`${Utils.getBaseUrl()}/usuarios`, config)
-  .then((respose) => respose)
-  .catch((error) => error)
 }
 
 export async function registerUser({ nome, email, password, administrador }) {
@@ -24,12 +22,8 @@ export async function registerUser({ nome, email, password, administrador }) {
       password,
       administrador,
      })
-     .then((respose) => respose)
-     .catch((error) => error)
 }
 
 export async function deleteUser(id) {
   return await axios.delete(`${Utils.getBaseUrl()}/usuarios/${id}`)
-  .then((respose) => respose)
-  .catch((error) => error)
 }
