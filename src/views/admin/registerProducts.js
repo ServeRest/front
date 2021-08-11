@@ -35,7 +35,12 @@ class RegisterProducts extends React.Component {
     e.preventDefault();
 
      if (this.state.imagem == '' || null || undefined) {
-      registerProduct(this.state)
+      registerProduct({ 
+        nome: this.state.name,
+        preco: this.state.price,
+        descricao: this.state.description,
+        quantidade: this.state.quantity,
+       })
         .then((response) => {
           history.push('/admin/listarprodutos');
         })
@@ -45,7 +50,13 @@ class RegisterProducts extends React.Component {
           this.setState({msg_error: allErrors});
         })
      } else {
-      registerProductWithImage(this.state)
+      registerProductWithImage({ 
+        nome: this.state.name,
+        preco: this.state.price,
+        descricao: this.state.description,
+        quantidade: this.state.quantity,
+        imagem: this.state.imagem,
+       })
         .then((response) => {
           history.push('/admin/listarprodutos');
         })
