@@ -26,14 +26,16 @@ export async function registerProduct({nome, preco, descricao, quantidade}) {
     }
   };
 
-  return await axios
-    .post(`${Utils.getBaseUrl()}/produtos`,
-      {
-        nome,
-        preco,
-        descricao,
-        quantidade,
-      }, config);
+    return await axios
+      .post(`${Utils.getBaseUrl()}/produtos`,
+        {
+          nome,
+          preco,
+          descricao,
+          quantidade,
+      }, config)
+      .then((response) => response)
+      .catch((error) => error)
 }
 
 export async function registerProductWithImage({nome, preco, descricao, quantidade, imagem}) {
@@ -64,7 +66,9 @@ export async function deleteProductById(id) {
     },
   };
 
-  return await axios.delete(`${Utils.getBaseUrl()}/produtos/${id}`, config);
+    return await axios.delete(`${Utils.getBaseUrl()}/produtos/${id}`, config)
+    .then((response) => response)
+    .catch((error) => error)
 }
 
 export async function getProductsFromCategoryAndQuery(query) {
