@@ -18,7 +18,7 @@ export async function getAllProducts() {
     })
 }
 
-export async function registerProduct(state) {
+export async function registerProduct({ nome, preco, descricao, quantidade }) {
     const config = {
         headers: {
           'Accept': 'application/json',
@@ -29,16 +29,16 @@ export async function registerProduct(state) {
     return await axios
       .post(`${Utils.getBaseUrl()}/produtos`,
         {
-          nome: state.name,
-          preco: state.price,
-          descricao: state.description,
-          quantidade: state.quantity,
+          nome,
+          preco,
+          descricao,
+          quantidade,
       }, config)
       .then((response) => response)
       .catch((error) => error)
 }
 
-export async function registerProductWithImage(state) {
+export async function registerProductWithImage({ nome, preco, descricao, quantidade, imagem }) {
     const config = {
         headers: {
           'Accept': 'application/json',
@@ -49,11 +49,11 @@ export async function registerProductWithImage(state) {
     return await axios
     .post(`${Utils.getBaseUrl()}/produtos`,
       {
-        nome: state.name,
-        preco: state.price,
-        descricao: state.description,
-        quantidade: state.quantity,
-        imagem: state.imagem
+        nome,
+        preco,
+        descricao,
+        quantidade,
+        imagem,
     }, config)
 }
 
