@@ -20,13 +20,10 @@ export default class ErrorAlert extends Component {
   }
 
   handleClose() {
-    const {closed} = this.props;
-
     if (this.state.display) {
       this.setState({
         display: false,
       });
-      closed(this.state.display, this.props.type);
     }
   }
 
