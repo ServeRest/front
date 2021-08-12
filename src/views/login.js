@@ -23,6 +23,7 @@ class Login extends React.Component {
   }
 
   changeHandler = e => {
+    this.setState({ msg_error: [] })
     this.setState({ [e.target.name]: e.target.value });
   }
 
@@ -53,7 +54,7 @@ class Login extends React.Component {
           <h2 className="font-robot">Login</h2>
           <br />
             { this.state.msg_error.map((item, index) => {
-              return <ErrorAlert name={ item } key={ index }></ErrorAlert>;
+              return <ErrorAlert name={ item } key={ index }/>;
             })}
             <input
               type="email"
@@ -61,15 +62,15 @@ class Login extends React.Component {
               placeholder="Digite seu email"         
               name="email" value={ email }
               data-testid="email"
-              onChange={this.changeHandler}></input>
-            <br></br>
+              onChange={this.changeHandler}/>
+            <br/>
             <input
               type="password"
               className="form-control"
               placeholder="Digite sua senha"
               data-testid="senha"
               name="password" value={ password }
-              onChange={this.changeHandler}></input>
+              onChange={this.changeHandler}/>
             <br />
             <button data-testid="entrar" type="submit" className="btn btn-primary">Entrar</button>
             <p 
