@@ -1,11 +1,11 @@
 import React from 'react';
-import 'bootswatch/dist/minty/bootstrap.min.css';
 import ErrorAlert from '../component/errorAlert';
 import { validateLogin } from '../services/validateUser';
 import LinkButton from '../component/linkButton';
 import logo1 from '../imagens/serverestlogo1.png'
 import '../styles/login.css';
 import { login } from '../services/login';
+import {Container, Form, Button, Image} from "react-bootstrap";
 
 const estadoInicial = { email: '', password: '' }
 
@@ -13,31 +13,41 @@ class Login extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      email: '',
-      password: '',
-      errors: '',
+      formData: {},
+      errors: {},
+      formSubmitted: false,
       msg_error: [],
     }
   }
 
-  changeHandler = e => {
-    this.setState({ msg_error: [] })
-    this.setState({ [e.target.name]: e.target.value });
+  handleChange = (e) => {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+
+    let { formData } = this.state;
+    formData[name] = value;
+    this.setState({
+      formData: formData,
+      msg_error: []
+    });
   }
 
-  submitHandler = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    login(this.state.email, this.state.password)
+    login(this.state.formData.email, this.state.formData.password)
     .then((response) => {
-      localStorage.setItem('serverest/userEmail', this.state.email);
+      localStorage.setItem('serverest/userEmail', this.state.formData.email);
       localStorage.setItem('serverest/userToken', response.data.authorization);
       const emailStorage = localStorage.getItem('serverest/userEmail');
       validateLogin(emailStorage);
     })
     .catch(error => {
-      this.setState({errors: error.response.data });
+      this.setState({
+        errors: error.response.data,
+        formSubmitted: true,
+      });
       const allErrors = Object.values(this.state.errors);
       this.setState({msg_error: allErrors});
       this.setState(estadoInicial);
@@ -45,41 +55,39 @@ class Login extends React.Component {
   }
 
   render() {
-    const { email, password } = this.state;
+
     return (
-      <div className="login-page">
-        <form onSubmit={ this.submitHandler }>
-          <div className="form">
-          <img className="imagem" src={ logo1 } width="200" height="200" />
-          <h2 className="font-robot">Login</h2>
-          <br />
+        <Container className="login-page">
+          <Form className="form" onSubmit={ this.handleSubmit }>
+            <Image className="imagem" src={ logo1 } width="200" height="200"/>
+            <h2 className="font-robot">Login</h2>
             { this.state.msg_error.map((item, index) => {
               return <ErrorAlert name={ item } key={ index }/>;
             })}
-            <input
-              type="email"
-              className="form-control"
-              placeholder="Digite seu email"         
-              name="email" value={ email }
-              data-testid="email"
-              onChange={this.changeHandler}/>
-            <br/>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Digite sua senha"
-              data-testid="senha"
-              name="password" value={ password }
-              onChange={this.changeHandler}/>
-            <br />
-            <button data-testid="entrar" type="submit" className="btn btn-primary">Entrar</button>
-            <p 
-              className="message">Não é cadastrado?
-              <LinkButton dataTestId="cadastrar" text="Cadastre-se" route="/cadastrarusuarios"></LinkButton>
-            </p>
-          </div>
-        </form>
-      </div>
+            <Form.Group className="mb-3" controlId="email">
+              <Form.Control
+                  data-testid="email"
+                  name="email"
+                  type="email"
+                  placeholder="Digite seu email"
+                  onChange={this.handleChange.bind(this)}/>
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="password">
+              <Form.Control
+                  data-testid="senha"
+                  name="password"
+                  type="password"
+                  placeholder="Digite sua senha"
+                  onChange={this.handleChange.bind(this)}/>
+            </Form.Group>
+            <Button data-testid="entrar" variant="primary" type="submit">
+              Entrar
+            </Button>
+            <Form.Text  className="message" >Não é cadastrado?
+              <LinkButton dataTestId="cadastrar" text="Cadastre-se" route="/cadastrarusuarios"/>
+            </Form.Text>
+          </Form>
+        </Container>
     )
   }
 }
