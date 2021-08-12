@@ -1,10 +1,10 @@
 import Navbar from '../../component/navbarAdmin';
 import React from 'react';
-import axios from 'axios';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import ErrorAlert from '../../component/errorAlert';
 import { validateToken } from '../../services/validateUser';
 import history from '../../services/history';
+import { registerProduct, registerProductWithImage } from '../../services/products';
 
 const estadoInicial = { name: '', price: '', description: '', quantity: '', imagem: '' }
 
@@ -33,22 +33,14 @@ class RegisterProducts extends React.Component {
     
   submitHandler = e => {
     e.preventDefault();
-    const config = {
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': localStorage.getItem('serverest/userToken'),
-      }
-    };
 
      if (this.state.imagem == '' || null || undefined) {
-      axios
-      .post('https://serverest.dev/produtos',
-        {
-          nome: this.state.name,
-          preco: this.state.price,
-          descricao: this.state.description,
-          quantidade: this.state.quantity,
-      }, config)
+      registerProduct({ 
+        nome: this.state.name,
+        preco: this.state.price,
+        descricao: this.state.description,
+        quantidade: this.state.quantity,
+       })
         .then((response) => {
           history.push('/admin/listarprodutos');
         })
@@ -58,15 +50,13 @@ class RegisterProducts extends React.Component {
           this.setState({msg_error: allErrors});
         })
      } else {
-      axios
-      .post('https://serverest.dev/produtos',
-        {
-          nome: this.state.name,
-          preco: this.state.price,
-          descricao: this.state.description,
-          quantidade: this.state.quantity,
-          imagem: this.state.imagem
-      }, config)
+      registerProductWithImage({ 
+        nome: this.state.name,
+        preco: this.state.price,
+        descricao: this.state.description,
+        quantidade: this.state.quantity,
+        imagem: this.state.imagem,
+       })
         .then((response) => {
           history.push('/admin/listarprodutos');
         })

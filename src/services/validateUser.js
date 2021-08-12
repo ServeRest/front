@@ -1,9 +1,11 @@
 import axios from 'axios';
 import history from './history';
+import Utils from '../services/utils'
+
 
 export function validateLogin(emaill) {
   axios
-    .get('https://serverest.dev/usuarios')
+    .get(`${Utils.getBaseUrl()}/usuarios`)
     .then((response) => {
       const { usuarios } = response.data;
       usuarios.forEach((element) => {
@@ -26,7 +28,7 @@ export function validateToken() {
 
 export function login(email, password) {
   axios
-    .post('https://serverest.dev/login', {
+    .post(`${Utils.getBaseUrl()}/login`, {
       email,
       password,
     })

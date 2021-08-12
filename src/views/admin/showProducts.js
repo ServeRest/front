@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from 'axios';
 import Navbar from '../../component/navbarAdmin';
 import { validateToken } from '../../services/validateUser';
 import 'bootswatch/dist/minty/bootstrap.min.css';
+import { getAllProducts, deleteProductById } from '../../services/products';
 
 class ShowUsers extends React.Component {
   constructor(props) {
@@ -14,32 +14,16 @@ class ShowUsers extends React.Component {
 
   componentDidMount() {
     validateToken();
-    const config = {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Accept': 'application/json',
-        'Authorization': localStorage.getItem('serverest/userToken'),
-      },
-    };
 
-    axios
-      .get('https://serverest.dev/produtos', config)
-      .then((response) => {
-        const produtos = response.data;
-        this.setState({ products: produtos.produtos });
-      });
+    getAllProducts()
+    .then((response) => {
+      const produtos = response.data;
+      this.setState({ products: produtos.produtos });
+    });
   }
 
   removeProduct(id) {
-    const url = `https://serverest.dev/produtos/${id}`
-    const config = {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        Accept: 'application/json',
-        Authorization: localStorage.getItem('serverest/userToken'),
-      },
-    }
-    axios.delete(url, config).then(res => { window.location.reload(); })
+    deleteProductById(id).then(res => { window.location.reload(); })
   }
 
   renderRows() {

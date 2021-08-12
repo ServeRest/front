@@ -1,12 +1,11 @@
 import React from 'react';
-import { getProductsFromCategoryAndQuery } from '../services/api';
 import Card from './Card';
 import Cart from '../services/cart';
 import NoSearching from './NoSearching';
 import Loading from './Loading';
-import axios from 'axios';
 import { BsSearch } from "react-icons/bs";
 import { validateToken } from '../services/validateUser';
+import { getAllProducts, getProductsFromCategoryAndQuery } from '../services/products';
 
 class CardList extends React.Component {
   constructor() {
@@ -26,20 +25,12 @@ class CardList extends React.Component {
 
   componentDidMount() {
     validateToken();
-    const config = {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Accept': 'application/json',
-        'Authorization': localStorage.getItem('serverest/userToken'),
-      },
-    };
 
-    axios
-      .get('https://serverest.dev/produtos', config)
-      .then((response) => {
-        const produtos = response.data;
-        this.setState({ products: produtos.produtos });
-      });
+    getAllProducts()
+    .then((response) => {
+      const produtos = response.data;
+      this.setState({ products: produtos.produtos });
+    });
     
     Cart.createStorage();
   }
