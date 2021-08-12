@@ -27,6 +27,7 @@ class RegisterUsers extends React.Component {
   }
 
   changeHandler = e => {
+    this.setState({ msg_error: [] })
     this.setState({ [e.target.name]: e.target.value });
   }
 

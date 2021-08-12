@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from './history';
-import Utils from '../services/utils'
+import Utils from './utils';
 
 
 export function validateLogin(emaill) {
