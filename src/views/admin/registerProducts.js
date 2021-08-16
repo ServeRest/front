@@ -1,25 +1,24 @@
 import Navbar from '../../component/navbarAdmin';
 import React from 'react';
-import 'bootswatch/dist/minty/bootstrap.min.css';
 import ErrorAlert from '../../component/errorAlert';
-import { validateToken } from '../../services/validateUser';
+import {validateToken} from '../../services/validateUser';
 import history from '../../services/history';
-import { registerProduct, registerProductWithImage } from '../../services/products';
+import {registerProduct, registerProductWithImage} from '../../services/products';
+import {Button, Container, Form, Row} from "react-bootstrap";
 
-const estadoInicial = { name: '', price: '', description: '', quantity: '', imagem: '' }
+const estadoInicial = {formData: {}}
 
 class RegisterProducts extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: '',
-      price: '',
-      description: '',
-      quantity: '',
-      imagem: '',
-      errors: '',
-      msg_error: [],
+      formData: {},
+      nomeError: '',
+      priceError: '',
+      descriptionError: '',
+      quantityError: '',
+      messageError: '',
     }
   }
 
@@ -27,160 +26,139 @@ class RegisterProducts extends React.Component {
     validateToken();
   }
 
-  changeHandler = e => {
-    this.setState({ msg_error: [] })
-    this.setState({ [e.target.name]: e.target.value });
+  getDisplay = (display, type) => {
+    if (type === "nome") {
+      this.setState({nomeError: ''})
+    }
+    if (type === "price") {
+      this.setState({priceError: ''})
+    }
+    if (type === "description") {
+      this.setState({descriptionError: ''})
+    }
+    if (type === "quantity") {
+      this.setState({quantityError: ''})
+    }
+    if (type === "message") {
+      this.setState({messageError: ''})
+    }
   }
-    
+
+  handleChange = e => {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+
+    let {formData} = this.state;
+    formData[name] = value;
+    this.setState({
+      formData: formData,
+    });
+    console.log(formData)
+  }
+
   submitHandler = e => {
     e.preventDefault();
-
-     if (this.state.imagem == '' || null || undefined) {
-      registerProduct({ 
-        nome: this.state.name,
-        preco: this.state.price,
-        descricao: this.state.description,
-        quantidade: this.state.quantity,
-       })
-        .then((response) => {
-          history.push('/admin/listarprodutos');
-        })
-        .catch(error => {
-          this.setState({errors: error.response.data });
-          const allErrors = Object.values(this.state.errors);
-          this.setState({msg_error: allErrors});
-        })
-     } else {
-      registerProductWithImage({ 
-        nome: this.state.name,
-        preco: this.state.price,
-        descricao: this.state.description,
-        quantidade: this.state.quantity,
-        imagem: this.state.imagem,
-       })
-        .then((response) => {
-          history.push('/admin/listarprodutos');
-        })
-        .catch(error => {
-          this.setState({errors: error.response.data });
-          const allErrors = Object.values(this.state.errors);
-          this.setState({msg_error: allErrors});
-        })
-     }
-    this.setState(estadoInicial);
+    if (this.state.imagem == '' || null || undefined) {
+      registerProduct({
+        nome: this.state.formData.nome,
+        preco: this.state.formData.price,
+        descricao: this.state.formData.description,
+        quantidade: this.state.formData.quantity,
+      }).then((response) => {
+        history.push('/admin/listarprodutos');
+      }).catch(error => {
+        this.setState({
+          nomeError: error.response.data.nome,
+          priceError: error.response.data.preco,
+          descriptionError: error.response.data.descricao,
+          quantityError: error.response.data.quantidade,
+          messageError: error.response.data.message,
+        });
+        this.setState(estadoInicial);
+      })
+    } else {
+      registerProductWithImage({
+        nome: this.state.formData.nome,
+        preco: this.state.formData.price,
+        descricao: this.state.formData.description,
+        quantidade: this.state.formData.quantity,
+        imagem: this.state.formData.imagem,
+      }).then((response) => {
+        history.push('/admin/listarprodutos');
+      }).catch(error => {
+        this.setState({
+          nomeError: error.response.data.nome,
+          priceError: error.response.data.preco,
+          descriptionError: error.response.data.descricao,
+          quantityError: error.response.data.quantidade,
+          messageError: error.response.data.message,
+        });
+        this.setState(estadoInicial);
+      })
+    }
   }
 
   render() {
-    const { name, price, description, quantity, imagem } = this.state;
     return (
       <div>
         <Navbar></Navbar>
-        <form className="jumbotron" onSubmit={ this.submitHandler }>
-          { this.state.msg_error.map((item , index)=> {
-            return <ErrorAlert name={ item } key={ index }></ErrorAlert>;
-          })}
-          <h1>Cadastro de Produtos</h1>
-          <hr className="my-4"></hr>
-          <div className="row">
-            <div className="col-md-4"></div>
-            <div className="col-md-4">
-              <div className="form-group">
-                <p class="text-left">Nome: *</p>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Digite o nome"
-                  data-testid="nome"
-                  name="name" value={ name }
-                  onChange={ this.changeHandler }>
-                </input>
-              </div>
-            </div>
-            <div className="col-md-4"></div>
-          </div>
-          <div className="row">
-            <div className="col-md-4"></div>
-            <div className="col-md-4">
-              <div className="form-group">
-                <p class="text-left">Preco: *</p>
-                <input
-                  className="form-control"
-                  placeholder="Digite o preço"
-                  name="price" value={ price }
-                  data-testid="preco"
-                  onChange={ this.changeHandler }>
-                </input>
-              </div>
-            </div>
-            <div className="col-md-4"></div>
-          </div>
-          <div className="row">
-            <div className="col-md-4"></div>
-            <div className="col-md-4">
-              <div className="form-group">
-                <p
-                  for="exampleFormControlTextarea1"
-                  class="text-left">
-                    Descrição: *
-                </p>
-                <textarea
-                  className="form-control"
-                  placeholder="Digite a descrição"
-                  name="description" value={ description }
-                  onChange={ this.changeHandler }
-                  data-testid="descricao"
-                  id="exampleFormControlTextarea1"
-                  rows="3">
-                </textarea>
-              </div>
-            </div>
-            <div className="col-md-4"></div>
-          </div>
-          <div className="row">
-            <div className="col-md-4"></div>
-            <div className="col-md-4">
-              <div className="form-group">
-                <p class="text-left">Quantidade: *</p>
-                <input
-                  type="number"
-                  className="form-control"
-                  name="quantity" value={ quantity }
-                  data-testid="quantidade"
-                  onChange={ this.changeHandler }>
-                </input>
-              </div>
-            </div>
-            <div className="col-md-4"></div>
-          </div>
-          <div className="row">
-            <div className="col-md-4"></div>
-            <div className="col-md-4">
-            <p class="text-left">Imagem:</p>
-              <input
-                type="file"
-                class="form-control-file"
-                name="imagem" value={ imagem }
-                onChange={ this.changeHandler } 
-                data-testid="imagem"
-                id="exampleFormControlFile1">
-              </input>
-            </div>
-            <div className="col-md-4"></div>
-          </div>
-          <br/>
-          <div className="row">
-            <div className="col-md-4"></div>
-            <div className="col-md-4">
-              <div className="form-group">
-              <button data-testid="cadastarProdutos" type="submit" className="btn btn-primary">Cadastrar</button>
-              </div>
-            </div>
-            <div className="col-md-4"></div>
-          </div>
-        </form>
+        <Container className="jumbotron" fluid>
+          <Form onSubmit={this.submitHandler}>
+            {this.state.nomeError ?
+              <ErrorAlert name={this.state.nomeError} type={"nome"} closed={this.getDisplay}/> : null}
+            {this.state.priceError ?
+              <ErrorAlert name={this.state.priceError} type={"price"} closed={this.getDisplay}/> : null}
+            {this.state.descriptionError ?
+              <ErrorAlert name={this.state.descriptionError} type={"description"} closed={this.getDisplay}/> : null}
+            {this.state.quantityError ?
+              <ErrorAlert name={this.state.quantityError} type={"quantity"} closed={this.getDisplay}/> : null}
+            {this.state.messageError ?
+              <ErrorAlert name={this.state.messageError} type={"message"} closed={this.getDisplay}/> : null}
+            <h1>Cadastro de Produtos</h1>
+            <hr className="my-4"/>
+            <Row md={2} className="justify-content-center">
+              <Form.Group className="mb-3 text-left" controlId="nome">
+                <Form.Label>Nome: * </Form.Label>
+                <Form.Control data-testid="nome" name="nome" type="text" placeholder="Digite o nome do produto" onChange={this.handleChange.bind(this)}/>
+              </Form.Group>
+            </Row>
+            <Row md={2} className="justify-content-center">
+              <Form.Group className="mb-3 text-left" controlId="price">
+                <Form.Label>Preço: * </Form.Label>
+                <Form.Control data-testid="preco" name="price" type="number" placeholder="Digite o valor do produto" onChange={this.handleChange.bind(this)}/>
+              </Form.Group>
+            </Row>
+            <Row md={2} className="justify-content-center">
+              <Form.Group className="mb-3 text-left" controlId="description">
+                <Form.Label>Descrição: * </Form.Label>
+                <Form.Control data-testid="descricao" name="description" as="textarea" rows={3}
+                              placeholder="Digite a descrição do produto" onChange={this.handleChange.bind(this)}/>
+              </Form.Group>
+            </Row>
+            <Row md={2} className="justify-content-center">
+              <Form.Group className="mb-3 text-left" controlId="quantity">
+                <Form.Label>Quantidade: * </Form.Label>
+                <Form.Control data-testid="quantity" name="quantity" type="number"
+                              placeholder="Digite aquantidade do produto" onChange={this.handleChange.bind(this)}/>
+              </Form.Group>
+            </Row>
+            <Row md={2} className="justify-content-center">
+              <Form.Group className="mb-3 text-left" controlId="imagem">
+                <Form.Label>Imagem: * </Form.Label>
+                <Form.Control data-testid="imagem" name="imagem" type="file" onChange={this.handleChange.bind(this)}/>
+              </Form.Group>
+            </Row>
+            <Row md={2} className="justify-content-center">
+              <Form.Group className="mb-3" controlId="imagem">
+                <Button data-testid="cadastarProdutos" type="submit" className="btn btn-primary">Cadastrar</Button>
+              </Form.Group>
+            </Row>
+          </Form>
+        </Container>
       </div>
-      )
-    }
+    )
   }
+}
 
 export default RegisterProducts;
