@@ -150,7 +150,7 @@ class RegisterProducts extends React.Component {
               </Form.Group>
             </Row>
             <Row md={2} className="justify-content-center">
-              <Form.Group className="mb-3" controlId="imagem">
+              <Form.Group className="mb-3" controlId="cadastrarProdutos">
                 <Button data-testid="cadastarProdutos" type="submit" className="btn btn-primary">Cadastrar</Button>
               </Form.Group>
             </Row>
