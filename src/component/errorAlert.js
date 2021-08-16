@@ -6,7 +6,7 @@ export default class ErrorAlert extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      display: true,
+      display: this.props.display,
     };
   }
 
@@ -20,10 +20,13 @@ export default class ErrorAlert extends Component {
   }
 
   handleClose() {
+    const {closed} = this.props;
+
     if (this.state.display) {
       this.setState({
         display: false,
       });
+      closed(this.state.display, this.props.type);
     }
   }
 
