@@ -1,84 +1,106 @@
 import React from 'react';
-import 'bootswatch/dist/minty/bootstrap.min.css';
 import ErrorAlert from '../component/errorAlert';
-import { validateLogin } from '../services/validateUser';
+import {validateLogin} from '../services/validateUser';
 import LinkButton from '../component/linkButton';
 import logo1 from '../imagens/serverestlogo1.png'
 import '../styles/login.css';
-import { login } from '../services/login';
+import {login} from '../services/login';
+import {Container, Form, Button, Image} from "react-bootstrap";
 
-const estadoInicial = { email: '', password: '' }
+const estadoInicial = {formData: {}}
 
 class Login extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      email: '',
-      password: '',
-      errors: '',
-      msg_error: [],
+      formData: {},
+      errors: {},
+      emailError: '',
+      passwordError: '',
+      messageError: '',
     }
   }
 
-  changeHandler = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  handleChange = (e) => {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
 
-  submitHandler = e => {
-    e.preventDefault();
-    login(this.state.email, this.state.password)
-    .then((response) => {
-      localStorage.setItem('serverest/userEmail', this.state.email);
-      localStorage.setItem('serverest/userToken', response.data.authorization);
-      const emailStorage = localStorage.getItem('serverest/userEmail');
-      validateLogin(emailStorage);
-    })
-    .catch(error => {
-      this.setState({errors: error.response.data });
-      const allErrors = Object.values(this.state.errors);
-      this.setState({msg_error: allErrors});
-      this.setState(estadoInicial);
+    let {formData} = this.state;
+    formData[name] = value;
+    this.setState({
+      formData: formData,
     });
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    login(this.state.formData.email, this.state.formData.password)
+      .then((response) => {
+        localStorage.setItem('serverest/userEmail', this.state.formData.email);
+        localStorage.setItem('serverest/userToken', response.data.authorization);
+        const emailStorage = localStorage.getItem('serverest/userEmail');
+        validateLogin(emailStorage);
+      })
+      .catch(error => {
+        this.setState({
+          emailError: error.response.data.email,
+          passwordError: error.response.data.password,
+          messageError: error.response.data.message,
+        });
+        this.setState(estadoInicial);
+      });
+  }
+
+  getDisplay = (display, type) => {
+    if (type === "email") {
+      this.setState({emailError: ''})
+    }
+    if (type === "password") {
+      this.setState({passwordError: ''})
+    }
+    if (type === "message") {
+      this.setState({messageError: ''})
+    }
+  }
+
   render() {
-    const { email, password } = this.state;
     return (
-      <div className="login-page">
-        <form onSubmit={ this.submitHandler }>
-          <div className="form">
-          <img className="imagem" src={ logo1 } width="200" height="200" />
-          <h2 className="font-robot">Login</h2>
-          <br />
-            { this.state.msg_error.map((item, index) => {
-              return <ErrorAlert name={ item } key={ index } display={ this.state.display }></ErrorAlert>;
-            })}
-            <input
-              type="email"
-              className="form-control"
-              placeholder="Digite seu email"         
-              name="email" value={ email }
+      <Container className="login-page">
+        <Form className="form" onSubmit={this.handleSubmit}>
+          <Image className="imagem" src={logo1} width="200" height="200"/>
+          <h1 className="font-robot">Login</h1>
+          {this.state.emailError ?
+            <ErrorAlert name={this.state.emailError} type={"email"} closed={this.getDisplay}/> : null}
+          {this.state.passwordError ?
+            <ErrorAlert name={this.state.passwordError} type={"password"} closed={this.getDisplay}/> : null}
+          {this.state.messageError ?
+            <ErrorAlert name={this.state.messageError} type={"message"} closed={this.getDisplay}/> : null}
+          <Form.Group className="mb-3" controlId="email">
+            <Form.Control
               data-testid="email"
-              onChange={this.changeHandler}></input>
-            <br></br>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Digite sua senha"
+              name="email"
+              type="email"
+              placeholder="Digite seu email"
+              onChange={this.handleChange.bind(this)}/>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="password">
+            <Form.Control
               data-testid="senha"
-              name="password" value={ password }
-              onChange={this.changeHandler}></input>
-            <br />
-            <button data-testid="entrar" type="submit" className="btn btn-primary">Entrar</button>
-            <p 
-              className="message">Não é cadastrado?
-              <LinkButton dataTestId="cadastrar" text="Cadastre-se" route="/cadastrarusuarios"></LinkButton>
-            </p>
-          </div>
-        </form>
-      </div>
+              name="password"
+              type="password"
+              placeholder="Digite sua senha"
+              onChange={this.handleChange.bind(this)}/>
+          </Form.Group>
+          <Button data-testid="entrar" variant="primary" type="submit">
+            Entrar
+          </Button>
+          <Form.Text className="message">Não é cadastrado?
+            <LinkButton dataTestId="cadastrar" text="Cadastre-se" route="/cadastrarusuarios"/>
+          </Form.Text>
+        </Form>
+      </Container>
     )
   }
 }

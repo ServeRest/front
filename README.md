@@ -22,13 +22,13 @@ Caso tenho algum projeto aberto na porta 3000, no terminal o react irá te pergu
   * [x] Login com sucesso.
   * [x] Validação de erros.
   * [x] Redirecionamento baseado no perfil do usuário.
-  * [ ] Fechar alertas/msg de erros.
+  * [x] Fechar alertas/msg de erros.
 
 * [ ] Cadastrar Usuários
   * [x] Cadastrar usuários com sucesso.
   * [x] Validação de erros.
   * [x] Ao cadastrar ser redirecionado conforme for o perfil.
-  * [ ] Fechar alertas/msg de erros.
+  * [x] Fechar alertas/msg de erros.
 
 * [ ] Administrador
  
@@ -41,13 +41,13 @@ Caso tenho algum projeto aberto na porta 3000, no terminal o react irá te pergu
     * [x] Cadastrar usuários com sucesso.
     * [x] Validação de erros.
     * [x] Ao cadastrar ser redirecionado para lista de usuários.
-    * [ ] Fechar alertas/msg de erros.
+    * [x] Fechar alertas/msg de erros.
 
   * [ ] Cadastrar Produtos
     * [x] Cadastrar produtos com sucesso.
     * [x] Validação de erros.
     * [x] Ao cadastrar ser redirecionado para lista de produtos.
-    * [ ] Fechar alertas/msg de erros.
+    * [x] Fechar alertas/msg de erros.
 
   * [ ] Listar Usuários
     * [x] Listar usuários com sucesso.
