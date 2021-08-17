@@ -111,7 +111,7 @@ class RegisterUsers extends React.Component {
             </Row>
             <Row md={2} className="justify-content-center">
               <Form.Group className="mb-3 text-left" controlId="password">
-                <Form.Label>Email: *</Form.Label>
+                <Form.Label>Senha: *</Form.Label>
                 <Form.Control data-testid="password" name="password" type="password" placeholder="Digite sua senha" onChange={this.handleChange.bind(this)}/>
               </Form.Group>
             </Row>

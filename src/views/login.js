@@ -70,7 +70,7 @@ class Login extends React.Component {
       <Container className="login-page">
         <Form className="form" onSubmit={this.handleSubmit}>
           <Image className="imagem" src={logo1} width="200" height="200"/>
-          <h2 className="font-robot">Login</h2>
+          <h1 className="font-robot">Login</h1>
           {this.state.emailError ?
             <ErrorAlert name={this.state.emailError} type={"email"} closed={this.getDisplay}/> : null}
           {this.state.passwordError ?
