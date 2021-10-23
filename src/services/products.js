@@ -34,8 +34,6 @@ export async function registerProduct({nome, preco, descricao, quantidade}) {
           descricao,
           quantidade,
       }, config)
-      .then((response) => response)
-      .catch((error) => error)
 }
 
 export async function registerProductWithImage({nome, preco, descricao, quantidade, imagem}) {

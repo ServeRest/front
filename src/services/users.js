@@ -24,8 +24,6 @@ export async function registerUser({ nome, email, password, administrador }) {
       password,
       administrador,
      })
-        .then((respose) => respose)
-        .catch((error) => error)
 }
 
 export async function deleteUser(id) {
