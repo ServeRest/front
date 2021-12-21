@@ -22,7 +22,7 @@ describe('API Pact test - Integration between \'Front\' and \'ServeRest - API Re
         email: 'fulano@qa.com',
         password: 'teste',
         administrador: 'true',
-        _id: '0uxuPY0cbmQhpEz1',
+        identificador: '0uxuPY0cbmQhpEz1',
       };
 
       await mockProvider.addInteraction({
