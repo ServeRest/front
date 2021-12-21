@@ -18,6 +18,9 @@ Caso tenho algum projeto aberto na porta 3000, no terminal o react irá te pergu
 
 ### Progresso do projeto Front
 
+
+arroz
+
 * [ ] Tela de login
   * [x] Login com sucesso.
   * [x] Validação de erros.
