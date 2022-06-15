@@ -15,6 +15,7 @@ describe('API Pact test - Integration between \'Front\' and \'ServeRest - API Re
   afterEach(() => mockProvider.verify());
   afterAll(() => mockProvider.finalize());
 
+  
   describe('GET user by ID', () => {
     it('Should return with sucess search with existing user', async () => {
       const expectedUsuario = {
