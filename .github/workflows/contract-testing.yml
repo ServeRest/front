@@ -10,69 +10,79 @@ env:
 
 jobs:
   test-contract:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-    - name: Project checkout
-      uses: actions/checkout@v2
-    - name: Node.js Setup
-      uses: actions/setup-node@v2
-    - name: Installation of Node.js dependencies
-      run: npm ci
-    - name: Run contract test
-      run: npm run test:contract
-    - run: docker pull pactfoundation/pact-cli:latest
-    - name: Publish contract test result
-      run: |
-        docker run --rm \
-          -w ${PWD} \
-          -v ${PWD}:${PWD} \
-          -e PACT_BROKER_BASE_URL \
-          -e PACT_BROKER_TOKEN \
-          pactfoundation/pact-cli \
-          publish \
-          ${PWD}/pacts \
-          --consumer-app-version ${{ github.sha }} \
-          --tag-with-git-branch
+      - name: Project checkout
+        uses: actions/checkout@v3
+
+      - name: Node.js Setup
+        uses: actions/setup-node@v3
+
+      - name: Installation of Node.js dependencies
+        run: npm ci
+
+      - name: Run contract test
+        run: npm run test:contract
+
+      - run: docker pull pactfoundation/pact-cli:latest
+
+      - name: Publish contract test result
+        run: |
+          docker run --rm \
+            -w ${PWD} \
+            -v ${PWD}:${PWD} \
+            -e PACT_BROKER_BASE_URL \
+            -e PACT_BROKER_TOKEN \
+            pactfoundation/pact-cli \
+            publish \
+            ${PWD}/pacts \
+            --consumer-app-version ${{ github.sha }} \
+            --tag-with-git-branch
 
   # Runs on branches as well, so we know the status of our PRs
   can-i-deploy-to-production:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     needs: test-contract
     steps:
-    - uses: actions/checkout@v2
-    - run: docker pull pactfoundation/pact-cli:latest
-    - name: Can I deploy to production?
-      run: |
-        docker run --rm \
-          -e PACT_BROKER_BASE_URL \
-          -e PACT_BROKER_TOKEN \
-          pactfoundation/pact-cli \
-          broker can-i-deploy \
-          --pacticipant Front \
-          --version ${{ github.sha }} \
-          --retry-while-unknown 30 \
-          --retry-interval 10 \
-          --to production
+      - uses: actions/checkout@v3
+
+      - run: docker pull pactfoundation/pact-cli:latest
+
+      - name: Can I deploy to production?
+        run: |
+          docker run --rm \
+            -e PACT_BROKER_BASE_URL \
+            -e PACT_BROKER_TOKEN \
+            pactfoundation/pact-cli \
+            broker can-i-deploy \
+            --pacticipant Front \
+            --version ${{ github.sha }} \
+            --retry-while-unknown 30 \
+            --retry-interval 10 \
+            --to production
 
   # Only deploy from main
   deploy:
     if: github.ref == 'refs/heads/main'
     needs: can-i-deploy-to-production
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Deploy
-      run: |
-        echo "\n========== STAGE: deploy ==========\n"
-        echo "Deploying to prod"
-    - run: docker pull pactfoundation/pact-cli:latest
-    - name: Tag the pact contract with 'production' tag
-      run: |
-        docker run --rm \
-          -e PACT_BROKER_BASE_URL \
-          -e PACT_BROKER_TOKEN \
-          pactfoundation/pact-cli \
-          broker create-version-tag \
-          --pacticipant Front \
-          --version ${{ github.sha }} \
-          --tag production
+      - uses: actions/checkout@v3
+
+      - name: Deploy
+        run: |
+          echo "\n========== STAGE: deploy ==========\n"
+          echo "Deploying to prod"
+
+      - run: docker pull pactfoundation/pact-cli:latest
+
+      - name: Tag the pact contract with 'production' tag
+        run: |
+          docker run --rm \
+            -e PACT_BROKER_BASE_URL \
+            -e PACT_BROKER_TOKEN \
+            pactfoundation/pact-cli \
+            broker create-version-tag \
+            --pacticipant Front \
+            --version ${{ github.sha }} \
+            --tag production
