@@ -6,7 +6,7 @@ import imagemSemFoto from '../imagens/semimagem.jpeg'
 
 
 class Card extends React.Component {
-  validarImagem = (imagem) =>  {
+  validarImagem = imagem =>  {
     if (imagem === 0 || imagem === null || imagem === undefined) {
       return imagemSemFoto 
     } else {
@@ -51,8 +51,10 @@ class Card extends React.Component {
 Card.propTypes = {
   product: PropTypes.shape({
     nome: PropTypes.string,
+    descricao: PropTypes.string,
     image: PropTypes.string,
     preco: PropTypes.number,
+    quantidade: PropTypes.number,
     _id: PropTypes.string,
   }).isRequired,
 };
