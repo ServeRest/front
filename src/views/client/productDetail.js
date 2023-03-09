@@ -5,14 +5,14 @@ import AddToCartButton from '../../component/AddToCartButton';
 import Navbar from '../../component/navbarClient';
 import CartButton from '../../component/cartButton';
 import imagemSemFoto from '../../imagens/semimagem.jpeg'
-import LinkButton from '../../component/linkButton';
-import { validateToken } from '../../services/validateUser';
+import LinkButton from '../../component/buttonLink';
+import { ValidateToken } from '../../services/validateUser';
 import '../../styles/productDetail.css';
 
 
 class ProductDetails extends React.Component {
   componentDidMount() {
-    validateToken();
+    ValidateToken();
   }
 
   validarImagem = (imagem) =>  {

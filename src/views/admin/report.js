@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../../component/navbarAdmin';
 import 'bootswatch/dist/minty/bootstrap.min.css';
-import { validateToken } from '../../services/validateUser';
+import { ValidateToken } from '../../services/validateUser';
 import imagem from '../../imagens/trabalho.png'
 
 class Reports extends React.Component {
@@ -11,7 +11,7 @@ class Reports extends React.Component {
   }
 
   componentDidMount() {
-    validateToken();
+    ValidateToken();
   }
 
   render() {

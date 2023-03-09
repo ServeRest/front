@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import Cart from '../../services/cart';
 import Navbar from '../../component/navbarClient';
 import imagemSemFoto from '../../imagens/semimagem.jpeg'
-import { validateToken } from '../../services/validateUser';
+import { ValidateToken } from '../../services/validateUser';
 import '../../styles/homeClient.css';
 
 class ShoppingCart extends React.Component {
   componentDidMount() {
-    validateToken();
+    ValidateToken();
   }
 
   validarImagem = (imagem) =>  {

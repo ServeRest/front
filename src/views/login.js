@@ -1,7 +1,7 @@
 import React from 'react';
 import ErrorAlert from '../component/errorAlert';
 import {validateLogin} from '../services/validateUser';
-import LinkButton from '../component/linkButton';
+import LinkButton from '../component/buttonLink';
 import logo1 from '../imagens/serverestlogo1.png'
 import '../styles/login.css';
 import {login} from '../services/login';

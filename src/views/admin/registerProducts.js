@@ -1,8 +1,8 @@
-import Navbar from '../../component/navbarAdmin';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../../component/navbarAdmin';
 import ErrorAlert from '../../component/errorAlert';
-import {validateToken} from '../../services/validateUser';
-import history from '../../services/history';
+import {ValidateToken} from '../../services/validateUser';
 import {registerProduct, registerProductWithImage} from '../../services/products';
 import {Button, Container, Form, Row} from "react-bootstrap";
 
@@ -23,7 +23,7 @@ class RegisterProducts extends React.Component {
   }
 
   componentDidMount() {
-    validateToken();
+    ValidateToken();
   }
 
   getDisplay = (display, type) => {
@@ -58,6 +58,9 @@ class RegisterProducts extends React.Component {
   }
 
   submitHandler = e => {
+    const history = useNavigate();
+    const redirectPage = (route) => history(route);
+
     e.preventDefault();
     if (this.state.imagem == '' || null || undefined) {
       registerProduct({
@@ -66,7 +69,7 @@ class RegisterProducts extends React.Component {
         descricao: this.state.formData.description,
         quantidade: this.state.formData.quantity,
       }).then((response) => {
-        history.push('/admin/listarprodutos');
+        redirectPage('/admin/listarprodutos');
       }).catch(error => {
         this.setState({
           nomeError: error.response.data.nome,
@@ -85,7 +88,7 @@ class RegisterProducts extends React.Component {
         quantidade: this.state.formData.quantity,
         imagem: this.state.formData.imagem,
       }).then((response) => {
-        history.push('/admin/listarprodutos');
+        redirectPage('/admin/listarprodutos');
       }).catch(error => {
         this.setState({
           nomeError: error.response.data.nome,

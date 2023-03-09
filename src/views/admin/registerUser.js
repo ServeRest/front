@@ -1,8 +1,8 @@
-import Navbar from '../../component/navbarAdmin'
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../../component/navbarAdmin'
 import ErrorAlert from '../../component/errorAlert';
-import {validateToken} from '../../services/validateUser';
-import history from '../../services/history';
+import {ValidateToken} from '../../services/validateUser';
 import {registerUser} from '../../services/users';
 import {Button, Container, Form, Row} from "react-bootstrap";
 
@@ -23,7 +23,7 @@ class RegisterUsers extends React.Component {
   }
 
   componentDidMount() {
-    validateToken();
+    ValidateToken();
   }
 
   handleChange = (e) => {
@@ -54,6 +54,9 @@ class RegisterUsers extends React.Component {
   }
 
   handleSubmit = e => {
+    const history = useNavigate();
+    const redirectPage = (route) => history(route);
+
     e.preventDefault();
     registerUser({
       nome: this.state.formData.nome,
@@ -62,7 +65,7 @@ class RegisterUsers extends React.Component {
       administrador: this.state.administrador.toString(),
     })
       .then((response) => {
-        history.push('/admin/listarusuarios');
+        redirectPage('/admin/listarusuarios');
       })
       .catch(error => {
         this.setState({

@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../../component/navbarAdmin';
-import { validateToken } from '../../services/validateUser';
+import { ValidateToken } from '../../services/validateUser';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import { getAllProducts, deleteProductById } from '../../services/products';
 
@@ -13,7 +13,7 @@ class ShowUsers extends React.Component {
   }
 
   componentDidMount() {
-    validateToken();
+    ValidateToken();
 
     getAllProducts()
     .then((response) => {

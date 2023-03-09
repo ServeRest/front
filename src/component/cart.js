@@ -3,7 +3,7 @@ import axios from 'axios';
 import Navbar from '../../component/navbarClient';
 import { BsArrowDown, BsArrowUp} from "react-icons/bs";
 import ShoppingCartButton from '../../component/cartButton';
-import { validateToken } from '../../services/validateUser';
+import { ValidateToken } from '../../services/validateUser';
 import '../../App.css';
 import imagemSemFoto from '../../imagens/semimagem.jpeg'
 
