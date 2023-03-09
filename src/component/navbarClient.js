@@ -1,14 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import ButtonLink from './buttonLink';
-import history from '../services/history';
 import '../styles/navbar.css';
 import logo1 from '../imagens/serverestlogo1branco.png'
 
-export default function navbarClient() {
+export default function NavbarClient() {
+  const history = useNavigate();
+  const redirectPage = (route) => history(route);
 
   const submitHandler = e => {
     localStorage.clear();
-    history.push('/login');
+    redirectPage('/login');
   }
 
   return (

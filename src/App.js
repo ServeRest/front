@@ -1,6 +1,7 @@
 import React from 'react';
-import { Router, Switch, Route } from 'react-router-dom';
-import history from './services/history';
+import {
+  Routes, Route,
+} from 'react-router-dom';
 import CadastroUsuario from './views/registerUser';
 import Home from './views/admin/home';
 import HomeClient from './views/client/home';
@@ -13,28 +14,26 @@ import Login from './views/login';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import ListCart from './views/client/ListCart';
 import Checkout from './views/client/checkout';
-import ProductDetails from '../src/views/client/productDetail';
+import ProductDetails from './views/client/productDetail';
 
 function App() {
   return (
     <div className="App">
-      <Router history={ history }>
-        <Switch>
-          <Route exact path="/admin/home" component={ Home } />
-          <Route exact path="/admin/cadastrarusuarios" component={ RegisterUser } />
-          <Route exact path="/admin/cadastrarprodutos" component={ RegisterProducts } />
-          <Route exact path="/admin/listarusuarios" component={ ShowUsers } />
-          <Route exact path="/admin/listarprodutos" component={ ShowProducts } />
-          <Route exact path="/admin/relatorios" component={ Report } />
-          <Route exact path="/home" component={ HomeClient } />
-          <Route exact path="/cadastrarusuarios" component={ CadastroUsuario } />
-          <Route exact path="/login" component={ Login } />
-          <Route exact path="/" render={ () => history.push('/login') } />
-          <Route path="/minhaListaDeProdutos" component={ ListCart } />
-          <Route path="/carrinho" component={ Checkout } />
-          <Route path="/detalhesProduto/:id" render={ (props) => <ProductDetails { ...props } /> } />
-        </Switch>
-      </Router>
+      <Routes>
+        <Route exact path="/admin/home" element={<Home />} />
+        <Route exact path="/admin/cadastrarusuarios" element={<RegisterUser />} />
+        <Route exact path="/admin/cadastrarprodutos" element={<RegisterProducts />} />
+        <Route exact path="/admin/listarusuarios" element={<ShowUsers />} />
+        <Route exact path="/admin/listarprodutos" element={<ShowProducts />} />
+        <Route exact path="/admin/relatorios" element={<Report />} />
+        <Route exact path="/home" element={<HomeClient />} />
+        <Route exact path="/cadastrarusuarios" element={<CadastroUsuario />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/" element={<Login />} />
+        <Route path="/minhaListaDeProdutos" element={<ListCart />} />
+        <Route path="/carrinho" element={<Checkout />} />
+        <Route path="/detalhesProduto/:id" render={(routeProps) => <ProductDetails routeProps={routeProps} />} />
+      </Routes>
     </div>
   );
 }

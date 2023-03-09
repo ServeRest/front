@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../../component/navbarAdmin';
-import { validateToken } from '../../services/validateUser';
+import { ValidateToken } from '../../services/validateUser';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import ErrorAlert from '../../component/errorAlert';
 import { deleteUser, getAllUsers } from '../../services/users';
@@ -15,7 +15,7 @@ class ShowUsers extends React.Component {
   }
 
   componentDidMount() {
-    validateToken();
+    ValidateToken();
     getAllUsers()
     .then((response) => {
       const usuarios = response.data;

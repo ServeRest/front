@@ -17,7 +17,6 @@
     "linebreak-style": ["error", "unix"],
     "import/no-named-as-default": 1,
     "quotes": ["error", "single"],
-    "semi": ["error", "always"],
     "class-methods-use-this": ["off"],
     "complexity": ["off", 11],
     "no-magic-numbers": [
@@ -62,7 +61,6 @@
     "react/jsx-fragments": ["error"],
     "react/jsx-max-depth": ["error", { "max": 8 }],
     "react/jsx-no-useless-fragment": ["error"],
-    "react/jsx-curly-spacing": ["error", { "when": "always" }],
     "react/jsx-equals-spacing": ["error", "never"],
     "react/jsx-first-prop-new-line": ["error", "multiline"],
     "react/jsx-indent": [

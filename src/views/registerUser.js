@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import SuccessAlert from '../component/alert'
 import ErrorAlert from '../component/errorAlert'
-import LinkButton from '../component/linkButton';
+import LinkButton from '../component/buttonLink';
 import {validateLogin, login} from '../services/validateUser';
 import logo1 from '../imagens/serverestlogo1.png'
 import '../styles/registerUser.css';

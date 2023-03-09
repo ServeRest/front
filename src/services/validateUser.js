@@ -1,8 +1,10 @@
 import axios from 'axios';
-import history from './history';
+import { useNavigate } from 'react-router-dom';
 import Utils from './utils';
 
 export function validateLogin(emaill) {
+  const navigate = useNavigate()
+
   axios
     .get(`${Utils.getBaseUrl()}/usuarios`)
     .then((response) => {
@@ -11,18 +13,18 @@ export function validateLogin(emaill) {
         if (element.email === emaill) {
           if (element.administrador === 'true') {
             localStorage.setItem('serverest/userNome', element.nome);
-            history.push('/admin/home');
+            navigate('/admin/home');
           } else {
-            history.push('/home');
+            navigate('/home');
           }
         }
       });
     });
 }
 
-export function validateToken() {
+export function ValidateToken() {
   const token = localStorage.getItem('serverest/userToken');
-  if (token === null) { history.push('/login'); }
+  if (token === null) { navigate('/login'); }
 }
 
 export function login(email, password) {

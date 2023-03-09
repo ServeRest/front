@@ -1,10 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../component/navbarAdmin';
-import history from '../../services/history';
 import 'bootswatch/dist/minty/bootstrap.min.css';
-import { validateToken } from '../../services/validateUser';
-
-const redirectPage = (route) => history.push(route);
+import { ValidateToken } from '../../services/validateUser';
 
 class Home extends React.Component {
   constructor(props) {
@@ -16,18 +14,23 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    validateToken();
+    ValidateToken();
     this.setState({ nome: localStorage.getItem('serverest/userNome') });
   }
 
   render() {
+    const history = useNavigate();
+    const redirectPage = (route) => history(route);
+
     const { nome } = this.state;
     return (
       <>
         <Navbar />
         <div className="jumbotron">
           <h1>
-            Bem Vindo  {nome}
+            Bem Vindo
+            {' '}
+            {nome}
           </h1>
           <p className="lead">Este é seu sistema para administrar seu ecommerce.</p>
           <hr className="my-4" />

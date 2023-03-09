@@ -4,7 +4,7 @@ import Cart from '../services/cart';
 import NoSearching from './NoSearching';
 import Loading from './Loading';
 import { BsSearch } from "react-icons/bs";
-import { validateToken } from '../services/validateUser';
+import { ValidateToken } from '../services/validateUser';
 import { getAllProducts, getProductsFromCategoryAndQuery } from '../services/products';
 
 class CardList extends React.Component {
@@ -24,7 +24,7 @@ class CardList extends React.Component {
   }
 
   componentDidMount() {
-    validateToken();
+    ValidateToken();
 
     getAllProducts()
     .then((response) => {
