@@ -25,3 +25,6 @@ yarn-error.log*
 # contract testing
 logs/
 pacts/
+
+# log video cypress
+cypress-ui.log

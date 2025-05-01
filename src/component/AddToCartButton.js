@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Cart from '../services/cart';
 import { Link } from 'react-router-dom';
-import '../styles/addToCartButton.css'
+import Cart from '../services/cart';
+import '../styles/addToCartButton.css';
 
-class AddToCartButton extends React.Component {
-  render() {
-    const { product } = this.props;
-    return (
-      <Link
+function AddToCartButton({ product }) {
+  return (
+    <Link
       data-testid="product-detail-link"
-      to={ { pathname: '/minhaListaDeProdutos'} }
-      >
+      to={{ pathname: '/minhaListaDeProdutos' }}
+    >
       <button
         type="button"
         data-testid="adicionarNaLista"
@@ -20,12 +18,9 @@ class AddToCartButton extends React.Component {
       >
         Adicionar a lista
       </button>
-      </Link>
-    );
-  }
+    </Link>
+  );
 }
-
-export default AddToCartButton;
 
 AddToCartButton.propTypes = {
   product: PropTypes.shape({
@@ -36,3 +31,5 @@ AddToCartButton.propTypes = {
     descricao: PropTypes.string,
   }).isRequired,
 };
+
+export default AddToCartButton;

@@ -13,7 +13,7 @@ import Login from './views/login';
 import 'bootswatch/dist/minty/bootstrap.min.css';
 import ListCart from './views/client/ListCart';
 import Checkout from './views/client/checkout';
-import ProductDetails from '../src/views/client/productDetail';
+import ProductDetails from './views/client/productDetail';
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/" render={ () => history.push('/login') } />
           <Route path="/minhaListaDeProdutos" component={ ListCart } />
           <Route path="/carrinho" component={ Checkout } />
-          <Route path="/detalhesProduto/:id" render={ (props) => <ProductDetails { ...props } /> } />
+          <Route path="/detalhesProduto/:id" render={ (props) => <ProductDetails location={ props.location } history={ props.history } match={ props.match } /> } />
         </Switch>
       </Router>
     </div>
