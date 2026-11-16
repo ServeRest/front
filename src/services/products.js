@@ -1,6 +1,10 @@
 import axios from 'axios';
 import Utils from './utils';
 
+// A API recusa preco e quantidade em texto desde a versão 3.4.0. Campo vazio segue vazio,
+// para a API continuar apontando o que falta.
+const paraNumero = (valor) => (valor === '' || valor === undefined || valor === null ? valor : Number(valor));
+
 export async function getAllProducts() {
   const config = {
     headers: {
@@ -30,9 +34,9 @@ export async function registerProduct({nome, preco, descricao, quantidade}) {
       .post(`${Utils.getBaseUrl()}/produtos`,
         {
           nome,
-          preco,
+          preco: paraNumero(preco),
           descricao,
-          quantidade,
+          quantidade: paraNumero(quantidade),
       }, config)
 }
 
@@ -48,9 +52,9 @@ export async function registerProductWithImage({nome, preco, descricao, quantida
     .post(`${Utils.getBaseUrl()}/produtos`,
       {
         nome,
-        preco,
+        preco: paraNumero(preco),
         descricao,
-        quantidade,
+        quantidade: paraNumero(quantidade),
         imagem,
       }, config);
 }
